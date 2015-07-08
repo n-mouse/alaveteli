@@ -608,9 +608,10 @@ class IncomingMessage < ActiveRecord::Base
     def _extract_text
         # Extract text from each attachment
         self.get_attachments_for_display.reduce(''){ |memo, attachment|
-            memo += MailHandler.get_attachment_text_one_file(attachment.content_type,
+            file = MailHandler.get_attachment_text_one_file(attachment.content_type,
                                                              attachment.body,
                                                              attachment.charset)
+            memo += convert_string_to_utf8(file, 'UTF-8').string
         }
     end
 
