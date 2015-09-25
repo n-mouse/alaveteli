@@ -26,6 +26,7 @@
 #
 
 require 'digest/sha1'
+require 'fileutils'
 
 class InfoRequest < ActiveRecord::Base
   include AdminColumn
@@ -230,6 +231,14 @@ class InfoRequest < ActiveRecord::Base
     for incoming_message in self.incoming_messages
       incoming_message.clear_in_database_caches!
     end
+  end
+
+  def destroy_on_disk_caches
+    foi_fragment_cache_directories.each{ |dir| FileUtils.rm_rf(dir) }
+  end
+
+  def destroy_downloaded_zip_files
+    FileUtils.rm_rf(download_zip_dir)
   end
 
   public

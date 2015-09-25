@@ -5,8 +5,6 @@
 # Copyright (c) 2009 UK Citizens Online Democracy. All rights reserved.
 # Email: hello@mysociety.org; WWW: http://www.mysociety.org/
 
-require 'fileutils'
-
 class AdminController < ApplicationController
   layout "admin"
   before_filter :authenticate
@@ -25,10 +23,10 @@ class AdminController < ApplicationController
   def expire_for_request(info_request)
     # Clear out cached entries, by removing files from disk (the built in
     # Rails fragment cache made doing this and other things too hard)
-    info_request.foi_fragment_cache_directories.each{ |dir| FileUtils.rm_rf(dir) }
+    info_request.destroy_on_disk_caches
 
     # Remove any download zips
-    FileUtils.rm_rf(info_request.download_zip_dir)
+    info_request.destroy_downloaded_zip_files
 
     # Remove the database caches of body / attachment text (the attachment text
     # one is after privacy rules are applied)
