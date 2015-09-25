@@ -946,9 +946,12 @@ class InfoRequest < ActiveRecord::Base
       mail_server_log.destroy
     end
     outgoing_messages.each { |a| a.destroy }
-    incoming_messages.each { |a| a.destroy }
+    incoming_messages.each { |a| a.fully_destroy }
     comments.each { |comment| comment.destroy }
     censor_rules.each{ |censor_rule| censor_rule.destroy }
+    destroy_on_disk_caches
+    destroy_downloaded_zip_files
+    reindex_request_events
 
     destroy
   end
