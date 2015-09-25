@@ -643,6 +643,7 @@ class IncomingMessage < ActiveRecord::Base
         info_request_event.user_info_request_sent_alerts.each { |a| a.destroy }
         info_request_event.destroy
       end
+      foi_attachments.each { |a| a.destroy }
       self.raw_email.destroy_file_representation!
       self.destroy
     end

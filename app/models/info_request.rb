@@ -226,19 +226,29 @@ class InfoRequest < ActiveRecord::Base
     return ret
   end
 
+  def expire
+    # Clear out cached entries, by removing files from disk (the built in
+    # Rails fragment cache made doing this and other things too hard)
+    foi_fragment_cache_directories.each{ |dir| FileUtils.rm_rf(dir) }
+
+    # Remove any download zips
+    FileUtils.rm_rf(download_zip_dir)
+
+    # Remove the database caches of body / attachment text (the attachment text
+    # one is after privacy rules are applied)
+    clear_in_database_caches!
+
+    # also force a search reindexing (so changed text reflected in search)
+    reindex_request_events
+    # and remove from varnish
+    purge_in_cache
+  end
+
   # Removes anything cached about the object in the database, and saves
   def clear_in_database_caches!
     for incoming_message in self.incoming_messages
       incoming_message.clear_in_database_caches!
     end
-  end
-
-  def destroy_on_disk_caches
-    foi_fragment_cache_directories.each{ |dir| FileUtils.rm_rf(dir) }
-  end
-
-  def destroy_downloaded_zip_files
-    FileUtils.rm_rf(download_zip_dir)
   end
 
   public
@@ -946,12 +956,12 @@ class InfoRequest < ActiveRecord::Base
       mail_server_log.destroy
     end
     outgoing_messages.each { |a| a.destroy }
-    incoming_messages.each { |a| a.fully_destroy }
     comments.each { |comment| comment.destroy }
     censor_rules.each{ |censor_rule| censor_rule.destroy }
-    destroy_on_disk_caches
-    destroy_downloaded_zip_files
-    reindex_request_events
+
+    expire
+
+    incoming_messages.each { |a| a.fully_destroy }
 
     destroy
   end

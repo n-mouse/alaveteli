@@ -264,10 +264,14 @@ describe InfoRequest do
 
   end
 
-  describe '#fully_destroy' do
+  describe '#expire' do
+    #TODO!!
+  end
 
-    it 'can destroy a request with comments and censor rules' do
-      info_request = FactoryGirl.create(:info_request)
+  describe '#fully_destroy' do
+    let(:info_request) { FactoryGirl.create(:info_request) }
+
+    it 'destroys the comments and censor rules' do
       censor_rule = FactoryGirl.create(:censor_rule, :info_request => info_request)
       comment = FactoryGirl.create(:comment, :info_request => info_request)
       info_request.reload
@@ -276,6 +280,63 @@ describe InfoRequest do
       expect(InfoRequest.where(:id => info_request.id)).to be_empty
       expect(CensorRule.where(:id => censor_rule.id)).to be_empty
       expect(Comment.where(:id => comment.id)).to be_empty
+    end
+
+    it 'destroys all the messages' do
+      incoming_message = FactoryGirl.create(:incoming_message_with_html_attachment,
+                                            :info_request => info_request)
+      outgoing_message = FactoryGirl.create(:initial_request,
+                                            :info_request => info_request)
+      info_request.reload
+      info_request.fully_destroy
+
+      expect(InfoRequest.where(:id => info_request.id)).to be_empty
+      expect(IncomingMessage.where(:info_request_id => info_request.id)).to be_empty
+      expect(FoiAttachment.where(:incoming_message_id => incoming_message.id)).to be_empty
+      expect(OutgoingMessage.where(:info_request_id => info_request.id)).to be_empty
+    end
+
+    it 'destroys the track_things data' do
+      request_event = FactoryGirl.create(:sent_event, :info_request => info_request)
+      track_thing = FactoryGirl.create(:search_track, :info_request => info_request)
+      TrackThingsSentEmail.create(:track_thing_id => track_thing.id,
+                                  :info_request_event_id => request_event.id)
+      info_request.reload
+      info_request.fully_destroy
+
+      expect(InfoRequest.where(:id => info_request.id)).to be_empty
+      expect(TrackThingsSentEmail.where(:info_request_event_id => request_event.id)).to be_empty
+      expect(TrackThing.where(:info_request_id => info_request.id)).to be_empty
+    end
+
+    it 'destroys the user_info_request_sent_alerts alerts' do
+      user = FactoryGirl.create(:user)
+      UserInfoRequestSentAlert.create(:user => user,
+                                      :info_request => info_request)
+      info_request.reload
+      info_request.fully_destroy
+
+      expect(InfoRequest.where(:id => info_request.id)).to be_empty
+      expect(UserInfoRequestSentAlert.where(:info_request_id => info_request.id)).to be_empty
+    end
+
+    it 'destroys the mail server logs' do
+      MailServerLog.create(:info_request_id => info_request.id,
+                           :order => 1,
+                           :line =>  'test')
+      info_request.reload
+      info_request.fully_destroy
+
+      expect(MailServerLog.where(:info_request_id => info_request.id)).to be_empty
+    end
+
+    # it 'can destroy lots of stuff' do
+    #   user_info_request_sent_alerts.each { |a| a.destroy }
+    # end
+
+    it 'should call the expire method' do
+      expect(info_request).to receive(:expire)
+      info_request.fully_destroy
     end
 
   end

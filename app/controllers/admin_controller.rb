@@ -21,21 +21,7 @@ class AdminController < ApplicationController
 
   # Expire cached attachment files for a request
   def expire_for_request(info_request)
-    # Clear out cached entries, by removing files from disk (the built in
-    # Rails fragment cache made doing this and other things too hard)
-    info_request.destroy_on_disk_caches
-
-    # Remove any download zips
-    info_request.destroy_downloaded_zip_files
-
-    # Remove the database caches of body / attachment text (the attachment text
-    # one is after privacy rules are applied)
-    info_request.clear_in_database_caches!
-
-    # also force a search reindexing (so changed text reflected in search)
-    info_request.reindex_request_events
-    # and remove from varnish
-    info_request.purge_in_cache
+    info_request.expire
   end
 
   # Expire cached attachment files for a user
