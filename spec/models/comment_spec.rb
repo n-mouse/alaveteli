@@ -29,7 +29,7 @@ describe Comment do
       expect(@visible_request.comments.visible).to eq([comment])
     end
 
-    it 'should treat comments which have be hidden to as not visible' do
+    it 'should treat comments which have be hidden as not visible' do
       comment = FactoryGirl.create(:hidden_comment, :info_request => @visible_request)
       expect(@visible_request.comments.visible).to eq([])
     end
