@@ -4,4 +4,7 @@
 *= require custom
 *= require jquery.ui.datepicker
 *= require jquery.ui.tabs
+*= require 'masonry/basic'
+*= require 'masonry/fluid'
+*= require 'masonry/right-to-left'
 */

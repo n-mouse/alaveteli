@@ -20,6 +20,9 @@ class GeneralController < ApplicationController
         @feed_autodetect = [ { :url => do_track_url(@track_thing, 'feed'),
                                :title => _('Successful requests'),
                                :has_json => true } ]
+                               
+        @publications = Publication.published.order('created_at DESC').limit(8)
+
     end
 
     # Display blog entries

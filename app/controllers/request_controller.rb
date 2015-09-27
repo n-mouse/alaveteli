@@ -250,6 +250,14 @@ class RequestController < ApplicationController
 
     # Page new form posts to
     def new
+            if AlaveteliConfiguration::force_registration_on_new_request && !authenticated?(
+                :web => _("To send your FOI request"),
+                :email => _("Then you'll be allowed to send FOI requests."),
+                :email_subject => _("Confirm your email address")
+            )
+            # do nothing - as "authenticated?" has done the redirect to signin page for us
+            return
+        end
         # All new requests are of normal_sort
         if !params[:outgoing_message].nil?
             params[:outgoing_message][:what_doing] = 'normal_sort'

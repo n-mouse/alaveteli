@@ -36,9 +36,16 @@ gem 'thin', '~> 1.5.1'
 gem 'vpim', '~> 13.11.11'
 gem 'will_paginate', '~> 3.0.5'
 # when 1.2.9 is released by the maintainer, we can stop using this fork:
-gem 'xapian-full-alaveteli', '~> 1.2.9.5'
+gem 'xapian-full-alaveteli', '~> 1.2.9.7'
 gem 'xml-simple', '~> 1.1.2', :require => 'xmlsimple'
 gem 'zip', '~> 2.0.2'
+gem 'friendly_id', '4.0.10'
+gem 'babosa'
+gem 'tinymce-rails'
+gem 'carrierwave', '0.10.0'
+gem 'masonry-rails'
+gem "unicode_utils"
+gem 'omniauth-facebook'
 
 # Gems related to internationalisation
 gem 'fast_gettext', '~> 0.7.0'

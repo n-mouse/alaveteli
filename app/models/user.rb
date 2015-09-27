@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
     attr_accessor :password_confirmation, :no_xapian_reindex
 
+    has_many :publications
     has_many :info_requests, :order => 'created_at desc'
     has_many :user_info_request_sent_alerts
     has_many :post_redirects

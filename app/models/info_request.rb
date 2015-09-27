@@ -58,6 +58,13 @@ class InfoRequest < ActiveRecord::Base
     has_tag_string
 
     scope :visible, :conditions => {:prominence => "normal"}
+    
+    scope :top2,
+      select("info_requests.id, count(track_things.id) AS track_things_count").
+      joins(:track_things).
+      group("info_requests.id").
+      order("track_things_count DESC").
+      limit(2)
 
     # user described state (also update in info_request_event, admin_request/edit.rhtml)
     validate :must_be_valid_state

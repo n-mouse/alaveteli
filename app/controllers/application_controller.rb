@@ -83,6 +83,18 @@ class ApplicationController < ActionController::Base
     end
 
     helper_method :locale_from_params
+    
+
+    
+    def tops
+       @top_requests = InfoRequest.top2
+       @tops = []
+       @top_requests.each do |tr|
+         @tops << InfoRequest.find(tr.id)
+       end
+       return @tops
+    end
+    helper_method :tops
 
     # Help work out which request causes RAM spike.
     # http://www.codeweblog.com/rails-to-monitor-the-process-of-memory-leaks-skills/
