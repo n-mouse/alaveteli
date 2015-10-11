@@ -48,6 +48,7 @@ gem 'masonry-rails'
 gem "unicode_utils"
 gem 'omniauth-facebook'
 gem 'paperclip', '~> 3.5.4'
+gem 'unicorn'
 
 
 # Gems related to internationalisation
