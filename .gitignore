@@ -16,6 +16,8 @@ TAGS
 /files/
 /public/download
 /public/*theme
+/public/uploads
+/public/system
 !/public/adminbootstraptheme
 /vendor/bundle
 .bundle

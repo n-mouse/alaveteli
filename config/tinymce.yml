@@ -1,7 +1,0 @@
-toolbar:
-  - styleselect | bold italic | undo redo
-  - image | link | table | fullscreen | code
-plugins:
-  - image
-  - link
-  - code

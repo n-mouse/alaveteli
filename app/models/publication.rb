@@ -3,9 +3,11 @@ class Publication < ActiveRecord::Base
   belongs_to :user
   
   scope :published, where(:published=>true)
-  scope :news, where(:status=>"новина")
-  scope :stories, where(:status=>"історія")
-  scope :videos, where(:status=>"відео")
+  scope :news, where(:category=>"новина")
+  scope :stories, where(:category=>"історія")
+  scope :videos, where(:category=>"відео")
+  scope :digest, where(:category=>"дайджест")
+  scope :blogs, where(:category=>"блоги")
   scope :chosen, where(:edchoice=>true)
   attr_accessible :title, :user_id, :body, :category, :slug, :published, :image, :edchoice
   

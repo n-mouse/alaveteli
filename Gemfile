@@ -41,11 +41,14 @@ gem 'xml-simple', '~> 1.1.2', :require => 'xmlsimple'
 gem 'zip', '~> 2.0.2'
 gem 'friendly_id', '4.0.10'
 gem 'babosa'
-gem 'tinymce-rails'
-gem 'carrierwave', '0.10.0'
+gem 'tinymce-rails', '~> 4.1.10'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+gem 'carrierwave'
 gem 'masonry-rails'
 gem "unicode_utils"
 gem 'omniauth-facebook'
+gem 'paperclip', '~> 3.5.4'
+
 
 # Gems related to internationalisation
 gem 'fast_gettext', '~> 0.7.0'

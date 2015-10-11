@@ -2,9 +2,15 @@ class AdminPublicationsController < AdminController
 
     layout "admin"
 
-
     def index
-      @publications = Publication.all
+      publications = Publication.where(nil)
+      publications = Publication.where(category: params[:category]) if params[:category].present?
+      publications = publications.where(published: false) if params[:published].present?
+      @query = params[:query]
+      if @query
+           publications = publications.where(["lower(title) like lower('%'||?||'%')", @query])
+      end
+      @publications = publications.paginate :order => "created_at", :page => params[:page], :per_page => 30
     end
     
     def new
@@ -37,5 +43,19 @@ class AdminPublicationsController < AdminController
     render 'edit'
   end
     end
+    
+    def destroy
+            @publication = Publication.find(params[:id])
+
+        @publication.destroy
+        redirect_to admin_publications_path
+    end
+    
+    private
+
+
+def filtering_params(params)
+  params.slice(:category, :author)
+end
 
 end
