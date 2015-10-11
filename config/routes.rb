@@ -12,9 +12,6 @@ end
 
 Alaveteli::Application.routes.draw do
 
-post '/tinymce_assets' => 'tinymce_assets#create'
-
-
     #### General contoller
     match '/' => 'general#frontpage', :as => :frontpage
     match '/blog' => 'general#blog', :as => :blog
