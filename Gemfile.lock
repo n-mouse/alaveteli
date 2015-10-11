@@ -153,6 +153,7 @@ GEM
       railties (>= 3.1.0)
     json (1.8.2)
     jwt (1.5.1)
+    kgio (2.10.0)
     libv8 (3.16.14.3)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
@@ -246,6 +247,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
+    raindrops (0.15.0)
     rake (0.9.2.2)
     rbx-require-relative (0.0.9)
     rdoc (3.12.2)
@@ -328,6 +330,10 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     unicode (0.4.4)
     unicode_utils (1.4.0)
+    unicorn (4.9.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     unidecoder (1.1.2)
     vpim (13.11.11)
     webrat (0.7.3)
@@ -409,6 +415,7 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicode (~> 0.4.4)
   unicode_utils
+  unicorn
   unidecoder (~> 1.1.2)
   vpim (~> 13.11.11)
   webrat (~> 0.7.3)
