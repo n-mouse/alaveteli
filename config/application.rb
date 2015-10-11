@@ -87,7 +87,7 @@ module Alaveteli
       config.action_mailer.default_url_options[:protocol] = "https"
     end
     
-    config.assets.precompile += %w( tinymce/plugins/uploadimage/plugin.js)
+    config.assets.precompile += %w( tinymce/plugins/uploadimage/plugin.js, bootstrap-dropdown.js)
 
     # Enable the asset pipeline
     config.assets.enabled = true
