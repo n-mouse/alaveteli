@@ -43,11 +43,10 @@ gem 'friendly_id', '4.0.10'
 gem 'babosa'
 gem 'tinymce-rails', '~> 4.1.10'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
-gem 'carrierwave'
 gem 'masonry-rails'
 gem "unicode_utils"
 gem 'omniauth-facebook'
-gem 'paperclip', '~> 3.5.4'
+gem 'paperclip'
 gem 'unicorn'
 
 
