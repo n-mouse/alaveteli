@@ -83,3 +83,45 @@
 
 }
 
+@font-face {
+    font-family: 'texgyreheros';
+    src: font-url('texgyreheros-bold.eot');
+    src: font-url('texgyreheros-bold.eot?#iefix') format('embedded-opentype'),
+         font-url('texgyreheros-bold.woff') format('woff'),
+         font-url('texgyreheros-bold.ttf') format('truetype'),
+         font-url('texgyreheros-bold.svg#texgyreheros') format('svg');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'texgyreheros';
+    src: font-url('texgyreheros-bolditalic.eot');
+    src: font-url('texgyreheros-bolditalic.eot?#iefix') format('embedded-opentype'),
+         font-url('texgyreheros-bolditalic.woff') format('woff'),
+         font-url('texgyreheros-bolditalic.ttf') format('truetype'),
+         font-url('texgyreheros-bolditalic.svg#texgyreheros') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'texgyreheros';
+    src: font-url('texgyreheros-regular.eot');
+    src: font-url('texgyreheros-regular.eot?#iefix') format('embedded-opentype'),
+         font-url('texgyreheros-regular.woff') format('woff'),
+         font-url('texgyreheros-regular.ttf') format('truetype'),
+         font-url('texgyreheros-regular.svg#texgyreheros') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'texgyreheros';
+    src: font-url('texgyreheros-italic.eot');
+    src: font-url('texgyreheros-italic.eot?#iefix') format('embedded-opentype'),
+         font-url('texgyreheros-italic.woff') format('woff'),
+         font-url('texgyreheros-italic.ttf') format('truetype'),
+         font-url('texgyreheros-italic.svg#texgyreheros') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}

@@ -21,7 +21,7 @@ class GeneralController < ApplicationController
                                :title => _('Successful requests'),
                                :has_json => true } ]
                                
-        @publications = Publication.published.order('created_at DESC').limit(8)
+        @publications = Publication.published.order('created_at DESC').limit(6)
 
     end
 
