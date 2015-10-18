@@ -11,7 +11,7 @@ class Publication < ActiveRecord::Base
   scope :digest, where(:category=>"дайджест")
   scope :blogs, where(:category=>"блоги")
   scope :chosen, where(:edchoice=>true)
-  attr_accessible :title, :user_id, :body, :category, :slug, :published, :image, :edchoice, :remove_image
+  attr_accessible :title, :user_id, :body, :category, :slug, :published, :image, :edchoice, :remove_image, :author
   
 
   validates :category, :presence => true
@@ -24,7 +24,7 @@ class Publication < ActiveRecord::Base
      input.to_s.to_slug.normalize(transliterations: :ukrainian).to_s
   end
   
-  has_attached_file :image, styles: { medium: "300x185>", thumb: "100x35>" }
+  has_attached_file :image, styles: { medium: "310x200", thumb: "100x35>" }
   attr_accessible :image, :alt, :hint
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   

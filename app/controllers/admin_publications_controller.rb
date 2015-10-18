@@ -14,7 +14,6 @@ class AdminPublicationsController < AdminController
     end
     
     def new
-      
     end
     
     def show
@@ -22,7 +21,9 @@ class AdminPublicationsController < AdminController
     end
     
     def create
+
       @publication = @user.publications.create(params[:publication])
+      
       if @publication.save
       redirect_to admin_publication_path(@publication)
       else

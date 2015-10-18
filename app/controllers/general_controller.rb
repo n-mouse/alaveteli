@@ -21,8 +21,19 @@ class GeneralController < ApplicationController
                                :title => _('Successful requests'),
                                :has_json => true } ]
                                
-        @publications = Publication.published.order('created_at DESC').limit(6)
-
+        @publications = Publication.published.order('created_at DESC').limit(10)
+        @grouped_publications = @publications.in_groups(2)
+       @publicationsl = @grouped_publications[0]
+       @publicationsr = @grouped_publications[1]
+        #@publicationsl = []
+        #@publicationsr = []
+        #@publications.each_with_index do |p, i|
+         # if i.odd?
+          #  @publicationsr << p
+          #else
+           # @publicationsl << p
+          #end
+        #end
     end
 
     # Display blog entries
