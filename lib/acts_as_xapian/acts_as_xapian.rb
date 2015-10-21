@@ -124,7 +124,7 @@ module ActsAsXapian
 
       # make some things that don't depend on the db
       # TODO: this gets made once for each acts_as_xapian. Oh well.
-      @@stemmer = Xapian::Stem.new('english')
+      @@stemmer = Xapian::Stem.new('russian')
     end
 
     # Opens / reopens the db for reading

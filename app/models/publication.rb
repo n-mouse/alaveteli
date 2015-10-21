@@ -1,8 +1,5 @@
 class Publication < ActiveRecord::Base
 
-  include PgSearch
-  pg_search_scope :search, against: [:title, :body], using: {tsearch: {dictionary: "russian"}}
-
   belongs_to :user
   
   attr_accessor :remove_image

@@ -48,7 +48,6 @@ gem "unicode_utils"
 gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'unicorn'
-gem 'pg_search'
 
 
 # Gems related to internationalisation
