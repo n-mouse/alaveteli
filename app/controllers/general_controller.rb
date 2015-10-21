@@ -194,7 +194,7 @@ class GeneralController < ApplicationController
 
         # Spelling and highight words are same for all three queries
         @highlight_words = @request_for_spelling.words_to_highlight(:regex => true, :include_original => true)
-        if !(@request_for_spelling.spelling_correction.force_encoding("UTF-8") =~ /[ёЁа-яА-Яa-zA-Zà-üÀ-Ü]+:/u)
+        if @request_for_spelling.spelling_correction && !(@request_for_spelling.spelling_correction.force_encoding("UTF-8") =~ /[ёіїа-яa-z]+:/u)
             @spelling_correction = @request_for_spelling.spelling_correction.force_encoding("UTF-8")
         end
 
