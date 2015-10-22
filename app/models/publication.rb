@@ -1,20 +1,16 @@
 class Publication < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :category
   
   attr_accessor :remove_image
   
   scope :published, where(:published=>true)
-  scope :news, where(:category=>"новина")
-  scope :stories, where(:category=>"історія")
-  scope :videos, where(:category=>"відео")
-  scope :digest, where(:category=>"дайджест")
-  scope :blogs, where(:category=>"блоги")
   scope :chosen, where(:edchoice=>true)
-  attr_accessible :title, :user_id, :body, :category, :slug, :published, :image, :edchoice, :remove_image, :author
+  attr_accessible :title, :user_id, :body, :category, :slug, :published, :image, :edchoice, :remove_image, :author, :category_id
   
 
-  validates :category, :presence => true
+  validates :category_id, :presence => true
   validates :title, :presence => true
 
   
@@ -31,9 +27,9 @@ class Publication < ActiveRecord::Base
   
     before_validation { image.clear if remove_image == '1' }
     
-        acts_as_xapian :texts => [ :title, :body ],
+    acts_as_xapian :texts => [ :title, :body ],
         :values => [
-             [ :created_at_numeric, 1, "created_at", :number  ] # for sorting
+             [ :created_at_numeric, 1, "created_at", :number  ] 
         ],
         :terms => [ [ :variety, 'V', "variety" ]
         ]
@@ -42,8 +38,7 @@ class Publication < ActiveRecord::Base
      end
   
   
-      def created_at_numeric
-        # format it here as no datetime support in Xapian's value ranges
+    def created_at_numeric
         created_at.strftime("%Y%m%d%H%M%S")
     end
 end

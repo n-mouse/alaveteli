@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
 
     graph_div.css('width', '700px');
-    graph_div.css('height', '600px');
+    graph_div.css('height', '400px');
 
     dataset = [
       {'color': 'orange',
@@ -59,7 +59,7 @@ $(document).ready(function() {
       options = {
         'grid': { 'hoverable': true, 'clickable': true },
         'xaxis': {
-          'ticks': graph_data.x_ticks,
+          'ticks': false,
           'rotateTicks': 90
         },
         'yaxis': {
@@ -67,7 +67,7 @@ $(document).ready(function() {
           'max': graph_data.y_max
         },
         'xaxes': [{
-          'axisLabel': graph_data.x_axis,
+          'axisLabel': false,
           'axisLabelPadding': 20,
           'axisLabelColour': 'black'
         }],

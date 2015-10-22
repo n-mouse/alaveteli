@@ -343,6 +343,16 @@ Alaveteli::Application.routes.draw do
 
     filter :conditionallyprependlocale
     
+    post '/tinymce_assets' => 'tinymce_assets#create'
+
+   resources :publications, :only => [:index, :show]
     
+  resources :categories, :path => "/", only: [:show] do
+     resources :publications, :only => [:index, :show]
+  end
+    
+    scope '/admin', :as => 'admin' do
+        resources :publications, :controller => 'admin_publications'
+    end
 
 end
