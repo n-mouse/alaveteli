@@ -14,6 +14,7 @@ class AdminPublicationsController < AdminController
     end
     
     def new
+      @publication = Publication.new
     end
     
     def show
@@ -27,7 +28,7 @@ class AdminPublicationsController < AdminController
       if @publication.save
       redirect_to admin_publication_path(@publication)
       else
-        flash.now[:danger] = "error"
+        render 'new'
       end
     end
     

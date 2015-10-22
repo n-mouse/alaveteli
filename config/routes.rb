@@ -345,14 +345,16 @@ Alaveteli::Application.routes.draw do
     
     post '/tinymce_assets' => 'tinymce_assets#create'
 
-   resources :publications, :only => [:index, :show]
-    
-  resources :categories, :path => "/", only: [:show] do
-     resources :publications, :only => [:index, :show]
-  end
-    
     scope '/admin', :as => 'admin' do
         resources :publications, :controller => 'admin_publications'
     end
+    
+   resources :categories, :path => "/", only: [:show] do
+     resources :publications, :only => [:index, :show]
+   end
+   
+      resources :publications, :only => [:index]
+    
+
 
 end
