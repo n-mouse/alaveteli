@@ -349,11 +349,13 @@ Alaveteli::Application.routes.draw do
         resources :publications, :controller => 'admin_publications'
     end
     
+          resources :publications, :only => [:index]
+    
    resources :categories, :path => "/", only: [:show] do
      resources :publications, :only => [:index, :show]
    end
    
-      resources :publications, :only => [:index]
+
     
 
 
