@@ -381,7 +381,7 @@ public
         # The optional bounce- dates from when we used to have separate emails for the envelope from.
         # (that was abandoned because councils would send hand written responses to them, not just
         # bounce messages)
-        incoming_email =~ /request-(?:bounce-)?([a-z0-9]+)-([a-z0-9]+)/
+        incoming_email =~ /re[qg]uest-(?:bounce-)?([a-z0-9]+)-([a-z0-9]+)/
         id = $1.to_i
         hash = $2
 
