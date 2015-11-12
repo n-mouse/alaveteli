@@ -50,9 +50,9 @@ module HighlightHelper
       separator = options.fetch(:separator, nil) || ""
       case phrase
       when Regexp
-        regex = phrase
+        regex = phrase.force_encoding("UTF-8")
       else
-        regex = /#{Regexp.escape(phrase)}/i
+        regex = /#{Regexp.escape(phrase.force_encoding("UTF-8"))}/i
       end
 
       return unless matches = text.match(regex)

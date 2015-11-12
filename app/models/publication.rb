@@ -12,6 +12,9 @@ class Publication < ActiveRecord::Base
 
   validates :category_id, :presence => true
   validates :title, :presence => true
+  validates :summary, :presence => true
+  validates :body, :presence => true
+  
 
   
     extend FriendlyId
@@ -40,5 +43,9 @@ class Publication < ActiveRecord::Base
   
     def created_at_numeric
         created_at.strftime("%Y%m%d%H%M%S")
+    end
+    
+    def fulltext
+       Sanitize.clean(body)
     end
 end

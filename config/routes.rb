@@ -345,6 +345,8 @@ Alaveteli::Application.routes.draw do
     
     post '/tinymce_assets' => 'tinymce_assets#create'
 
+    match '/feed' => 'publications#feed'
+
     scope '/admin', :as => 'admin' do
         resources :publications, :controller => 'admin_publications'
     end

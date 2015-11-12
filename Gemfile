@@ -48,8 +48,8 @@ gem "unicode_utils"
 gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'unicorn'
-
-
+gem 'test-unit'
+gem 'sanitize'
 # Gems related to internationalisation
 gem 'fast_gettext', '~> 0.7.0'
 gem 'gettext_i18n_rails', '~> 0.9.4'

@@ -4,11 +4,15 @@ class PublicationsController < ApplicationController
     @publication = Publication.find(params[:id])
   end
   
+  def feed
+    @publications = Publication.published.order('created_at DESC')
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
+  end 
+  
   def index
     @publications = Publication.published.order('created_at DESC').paginate(:page => params[:page], :per_page => 14)
-       #@grouped_publications = @publications.in_groups(2)
-       #@publicationsl = @grouped_publications[0]
-       #@publicationsr = @grouped_publications[1]
         @publicationsl = []
         @publicationsr = []
         @publications.each_with_index do |p, i|
