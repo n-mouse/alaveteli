@@ -3,7 +3,10 @@
    in HTML 4.01) and to the navbar also, so it can be styled with bootstrap
    when showing for admin users on the front end, re-apply the bootstrap html
    and body styles here.
+*= require jquery.ui.datepicker
 */
+
+
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;

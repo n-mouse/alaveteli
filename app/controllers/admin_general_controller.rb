@@ -110,9 +110,21 @@ class AdminGeneralController < AdminController
         end
 
     end
-
+    
+   
     def stats
         # Overview counts of things
+                 if params[:date_start].blank?
+          start = DateTime.now.at_beginning_of_day
+        else
+          start = Date.parse(params[:date_start]).beginning_of_day
+        end
+        if params[:date_end].blank?
+          finish = Time.now
+        else
+          finish = Date.parse(params[:date_end]).end_of_day
+        end
+        @period_requests = InfoRequest.where(created_at: start...finish).count
         @public_body_count = PublicBody.count
 
         @info_request_count = InfoRequest.count
@@ -125,6 +137,10 @@ class AdminGeneralController < AdminController
         @comment_count = Comment.count
         @request_by_state = InfoRequest.count(:group => 'described_state')
         @tracks_by_type = TrackThing.count(:group => 'track_type')
+        respond_to do |format|
+           format.html
+           format.js
+        end
     end
 
     def debug

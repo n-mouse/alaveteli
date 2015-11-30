@@ -11,3 +11,4 @@
 //= require admin/holidays
 //= require jquery_ujs
 //= require tinymce-jquery
+//= require jquery.ui.datepicker
