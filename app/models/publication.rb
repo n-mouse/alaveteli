@@ -18,7 +18,7 @@ class Publication < ActiveRecord::Base
 
   
     extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, use: [:slugged, :history]
     def normalize_friendly_id(input)
      input.to_s.to_slug.normalize(transliterations: :ukrainian).to_s
   end

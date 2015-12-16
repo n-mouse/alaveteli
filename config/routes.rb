@@ -343,6 +343,9 @@ Alaveteli::Application.routes.draw do
 
     filter :conditionallyprependlocale
     
+    get '/news/publications/ministry-oborony-ekolohii-ta-kultury-za-rik-ne-zdiisnyly-zhodnoho-vidriadzhennia-za-rakhunok-derzhbiudzhetu', to: redirect('/news/publications/ministry-oborony-ekolohii-ta-kultury-v-2015-mu-ne-izdyly-u-vidriadzhennia-za-rakhunok-derzhbiudzhetu')
+    
+    
     post '/tinymce_assets' => 'tinymce_assets#create'
 
     match '/feed' => 'publications#feed'
