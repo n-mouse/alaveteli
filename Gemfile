@@ -59,6 +59,9 @@ gem 'locale', '~> 2.0.8'
 gem 'routing-filter', '~> 0.3.1'
 gem 'unicode', '~> 0.4.4'
 gem 'unidecoder', '~> 1.1.2'
+gem 'impressionist'
+
+
 
 group :assets do
   gem 'bootstrap-sass', '~> 2.3.1.2'
