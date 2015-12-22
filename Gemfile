@@ -61,8 +61,6 @@ gem 'unicode', '~> 0.4.4'
 gem 'unidecoder', '~> 1.1.2'
 gem 'impressionist'
 
-
-
 group :assets do
   gem 'bootstrap-sass', '~> 2.3.1.2'
   gem 'sass-rails', '~> 3.2.3'
