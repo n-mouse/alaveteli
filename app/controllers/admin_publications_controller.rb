@@ -4,7 +4,7 @@ class AdminPublicationsController < AdminController
 
     def index
       publications = Publication.where(nil).order('created_at DESC')
-      publications = Publication.where(category: params[:category]).order('created_at DESC') if params[:category].present?
+      publications = Publication.where(category: params[:category_id]).order('created_at DESC') if params[:category_id].present?
       publications = publications.where(published: false) if params[:published].present?
       @query = params[:query]
       if @query
