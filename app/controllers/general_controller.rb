@@ -73,7 +73,8 @@ class GeneralController < ApplicationController
         # in config/routes.rb for comments.
         combined = params[:combined].split("/")
         @sortby = nil
-        @bodies = @requests = @users = @publications = true
+        @bodies = @requests = @users = true
+        @publications = false
         if combined.size > 0 && (['advanced'].include?(combined[-1]))
             combined.pop
             @advanced = true
@@ -96,7 +97,7 @@ class GeneralController < ApplicationController
                 @bodies = false
                 @requests = false
                 @users = false   
-                @publications = true            
+                @publications = false            
             when 'bodies'
                 @bodies = true
                 @requests = false
@@ -156,9 +157,7 @@ class GeneralController < ApplicationController
 
         @total_hits = @xapian_requests_hits = @xapian_bodies_hits = @xapian_users_hits = 0
         if @publications
-
             @xapian_publications = perform_search([Publication], @query, @sortby, nil, 5)
-            puts @query["combined"]
             @publications_per_page = @per_page
             @xapian_publications_hits = @xapian_publications.results.size
             @xapian_publications_total_hits = @xapian_publications.matches_estimated
