@@ -156,8 +156,9 @@ class GeneralController < ApplicationController
 
         @total_hits = @xapian_requests_hits = @xapian_bodies_hits = @xapian_users_hits = 0
         if @publications
+
             @xapian_publications = perform_search([Publication], @query, @sortby, nil, 5)
-            puts @query
+            puts @query["combined"]
             @publications_per_page = @per_page
             @xapian_publications_hits = @xapian_publications.results.size
             @xapian_publications_total_hits = @xapian_publications.matches_estimated
