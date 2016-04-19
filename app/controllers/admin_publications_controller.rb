@@ -18,7 +18,7 @@ class AdminPublicationsController < AdminController
     end
     
     def show
-      @publication = Publication.published.find(params[:id])
+      @publication = Publication.find(params[:id])
     end
     
     def create

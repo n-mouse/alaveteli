@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
   
   def show
-    @publication = Publication.find(params[:id])
+    @publication = Publication.published.find(params[:id])
     impressionist(@publication, "message", :unique => [:session_hash])
 
   end
