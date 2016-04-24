@@ -9,7 +9,7 @@ class Publication < ActiveRecord::Base
   
   scope :published, where(:published=>true)
   scope :chosen, where(:edchoice=>true)
-  attr_accessible :title, :user_id, :body, :category, :slug, :summary, :published, :image, :edchoice, :remove_image, :author, :category_id
+  attr_accessible :title, :user_id, :body, :category, :slug, :summary, :published, :image, :edchoice, :remove_image, :author, :category_id, :created_at
   
 
   validates :category_id, :presence => true
