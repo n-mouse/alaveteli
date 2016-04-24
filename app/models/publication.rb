@@ -52,9 +52,9 @@ class Publication < ActiveRecord::Base
     end
     
     def indexed_by_search?
-        #if self.published == false || self.created_at > Time.now
-        #    return false
-        #end
-        return false
+        if !self.published || self.created_at > Time.now
+            return false
+        end
+        return true
     end
 end
