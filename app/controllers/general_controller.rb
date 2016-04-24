@@ -73,8 +73,7 @@ class GeneralController < ApplicationController
         # in config/routes.rb for comments.
         combined = params[:combined].split("/")
         @sortby = nil
-        @bodies = @requests = @users = true
-        @publications = false
+        @bodies = @requests = @users = @publications = true
         if combined.size > 0 && (['advanced'].include?(combined[-1]))
             combined.pop
             @advanced = true
@@ -97,7 +96,7 @@ class GeneralController < ApplicationController
                 @bodies = false
                 @requests = false
                 @users = false   
-                @publications = false            
+                @publications = true            
             when 'bodies'
                 @bodies = true
                 @requests = false
