@@ -2,4 +2,4 @@
 #
 # annotates the models in app/ with schema information
 
-bundle exec annotate --show-migration --position before --exclude tests,fixtures
+/home/alaveteli/.rvm/gems/ruby-2.0.0-p353/wrappers/bundle exec annotate --show-migration --position before --exclude tests,fixtures

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd `dirname $0`
-bundle exec rake --silent stats:update_public_bodies_stats
+/home/alaveteli/.rvm/gems/ruby-2.0.0-p353/wrappers/bundle exec rake --silent stats:update_public_bodies_stats
