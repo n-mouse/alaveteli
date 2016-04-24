@@ -50,4 +50,11 @@ class Publication < ActiveRecord::Base
     def fulltext
        Sanitize.clean(body)
     end
+    
+    def indexed_by_search?
+        if self.published == false || self.created_at > TIme.now
+            return false
+        end
+        return true
+    end
 end
