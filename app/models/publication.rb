@@ -37,7 +37,7 @@ class Publication < ActiveRecord::Base
              [ :created_at_numeric, 1, "created_at", :number  ] 
         ],
         :terms => [ [ :variety, 'V', "variety" ]
-        ]
+        ], :if => :indexed_by_search?
      def variety
        "publication"
      end
