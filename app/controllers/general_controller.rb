@@ -12,6 +12,10 @@ class GeneralController < ApplicationController
     MAX_RESULTS = 500
 
     # New, improved front page!
+    
+    def under_construction
+    end
+    
     def frontpage
         medium_cache
         @locale = self.locale_from_params()

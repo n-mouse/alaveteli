@@ -11,6 +11,12 @@ $alaveteli_route_extensions.each do |f|
 end
 
 Alaveteli::Application.routes.draw do
+   
+   match '/' => 'general#under_construction'
+   match "/under_construction" => "general#under_construction"
+    match '*path' => redirect('/under_construction')
+    
+    
 
     #### General contoller
     match '/' => 'general#frontpage', :as => :frontpage
@@ -360,8 +366,4 @@ Alaveteli::Application.routes.draw do
      resources :publications, :only => [:index, :show]
    end
    
-
-    
-
-
 end
