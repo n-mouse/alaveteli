@@ -12,12 +12,6 @@ end
 
 Alaveteli::Application.routes.draw do
    
-   match '/' => 'general#under_construction'
-   match "/under_construction" => "general#under_construction"
-    match '*path' => redirect('/under_construction')
-    
-    
-
     #### General contoller
     match '/' => 'general#frontpage', :as => :frontpage
     match '/blog' => 'general#blog', :as => :blog

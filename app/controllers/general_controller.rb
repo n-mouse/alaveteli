@@ -13,9 +13,6 @@ class GeneralController < ApplicationController
 
     # New, improved front page!
     
-    def under_construction
-    end
-    
     def frontpage
         medium_cache
         @locale = self.locale_from_params()
