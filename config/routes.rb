@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# -*- encoding : utf-8 -*-
 # config/routes.rb:
 # Mapping URLs to controllers for FOIFA.
 #
@@ -66,6 +66,8 @@ Alaveteli::Application.routes.draw do
 
     resources :request, :only => [] do
         resource :report, :only => [:new, :create]
+        resource :widget, :only => [:new, :show]
+        resources :widget_votes, :only => [:create]
     end
 
     resources :info_request_batch, :only => :show

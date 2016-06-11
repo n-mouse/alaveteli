@@ -766,7 +766,7 @@ msgid "Check you haven't included any <strong>personal information</strong>."
 msgstr "Перевірте, чи не включили ви якоїсь особистої інформації"
 
 msgid "Choose a reason"
-msgstr ""
+msgstr "Оберіть причину"
 
 msgid "Choose your profile photo"
 msgstr "Оберіть фото в профілі"
@@ -864,10 +864,10 @@ msgid "Contact {{site_name}}"
 msgstr "Контакти"
 
 msgid "Contains defamatory material"
-msgstr ""
+msgstr "Містить наклеп"
 
 msgid "Contains personal information"
-msgstr ""
+msgstr "Містить персональні дані"
 
 msgid "Could not identify the request from the email address"
 msgstr "Не вдалося визначити запит"
@@ -1367,7 +1367,7 @@ msgstr "Якщо адреса неправиильна або якщо ви зн
 msgid ""
 "If the error was a delivery failure, and you can find an up to date FOI "
 "email address for the authority, please tell us using the form below."
-msgstr "Якщо це була помилка доставки і вам відома актуальна адреса розпорядника інформації, повідомте нас."
+msgstr "Щоб змінити статус запиту, уточніть, яку саме помилку ви отримали."
 
 msgid ""
 "If this is incorrect, or you would like to send a late response to the "
@@ -1835,7 +1835,7 @@ msgid "Not a valid FOI request"
 msgstr ""
 
 msgid "Not a valid request"
-msgstr ""
+msgstr "Не відповідає вимогам до запиту"
 
 msgid ""
 "Note that the requester will not be notified about your annotation, because "
@@ -2432,10 +2432,10 @@ msgid "Report an offensive or unsuitable request"
 msgstr "Повідомте про образливий або недоречний запит"
 
 msgid "Report request"
-msgstr ""
+msgstr "Повідомити адміністраторів сайту про запит"
 
 msgid "Report this request"
-msgstr "Повідомити"
+msgstr "Цей запит потребує уваги адміністраторів"
 
 msgid "Reported for administrator attention."
 msgstr "Адміністратора повідомлено."
@@ -2443,7 +2443,7 @@ msgstr "Адміністратора повідомлено."
 msgid ""
 "Reporting a request notifies the site administrators. They will respond as "
 "soon as possible."
-msgstr ""
+msgstr "Адміністраторів сайту буде повідомлено, вони нададуть вам відповідь за першої нагоди"
 
 msgid "Request an internal review"
 msgstr "Зробити запит на внутрішню перевірку"
@@ -2455,7 +2455,7 @@ msgid "Request email"
 msgstr ""
 
 msgid "Request for personal information"
-msgstr ""
+msgstr "Запит про персональні дані"
 
 msgid "Request has been removed"
 msgstr "Запит було видалено"
@@ -3607,7 +3607,7 @@ msgid "Version {{version}}"
 msgstr "Версія {{version}}"
 
 msgid "Vexatious"
-msgstr ""
+msgstr "Образливий"
 
 msgid "View FOI email address"
 msgstr ""
@@ -3745,7 +3745,7 @@ msgid "Who can I request information from?"
 msgstr "Кому я можу надіслати інформаційний запит?"
 
 msgid "Why specifically do you consider this request unsuitable?"
-msgstr ""
+msgstr "Чому саме ви вважаєте цей запит проблемним?"
 
 msgid "Withdrawn by the requester."
 msgstr "Автор запиту відмовився від нього."

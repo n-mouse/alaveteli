@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module PublicBodyHelper
 
   # Public: The reasons a request can't be made to a PublicBody
@@ -36,20 +37,18 @@ module PublicBodyHelper
   #
   # public_body - Instance of a PublicBody
   #
-  # Returns a string
+  # Returns a String
   def type_of_authority(public_body)
-      types = public_body.tags.each_with_index.map do |tag, index|
-          if PublicBodyCategory.get().by_tag().include?(tag.name)
-              desc = PublicBodyCategory.get().singular_by_tag()[tag.name]
+      categories = PublicBodyCategory.
+                     where(:category_tag => public_body.tag_string.split)
 
-              if index.zero?
-                  desc = desc.sub(/\S/) { |m| Unicode.upcase(m) }
-              end
-              link_to(desc, list_public_bodies_path(tag.name))
+      types = categories.each_with_index.map do |category, index|
+          desc = category.description
+          if index.zero?
+              desc = desc.sub(/\S/) { |m| Unicode.upcase(m) }
           end
+          link_to(desc, list_public_bodies_path(category.category_tag))
       end
-
-      types.compact!
 
       if types.any?
           types.to_sentence(:last_word_connector => ' and ').html_safe

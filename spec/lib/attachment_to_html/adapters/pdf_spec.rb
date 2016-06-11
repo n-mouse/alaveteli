@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
 
 describe AttachmentToHTML::Adapters::PDF do
@@ -68,6 +69,11 @@ describe AttachmentToHTML::Adapters::PDF do
 
         it 'is not successful if the body has no content other than tags' do
             adapter.stub(:body).and_return('<p></p>')
+            adapter.success?.should be_false
+        end
+
+        it 'is not successful if convert returns nil' do
+            adapter.stub(:convert).and_return(nil)
             adapter.success?.should be_false
         end
 
