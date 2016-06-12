@@ -3,11 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# ferencbaki89 <ferencbaki89@gmail.com>, 2013
-# ferencbaki89 <ferencbaki89@gmail.com>, 2013
-# hiiri <murahoid@gmail.com>, 2012
+# Ferents <ferencbaki89@gmail.com>, 2013
+# Ferents <ferencbaki89@gmail.com>, 2013
+# hiiri <murahoid@gmail.com>, 2012,2014
 # louisecrow <louise@mysociety.org>, 2013
-# louisecrow <louise@mysociety.org>, 2013
+# louisecrow <louise@mysociety.org>, 2013-2014
 # hiiri <murahoid@gmail.com>, 2014
 # hiiri <murahoid@gmail.com>, 2012
 # hiiri <murahoid@gmail.com>, 2012
@@ -15,29 +15,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alaveteli\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 09:52+0000\n"
-"PO-Revision-Date: 2014-03-19 11:18+0000\n"
-"Last-Translator: hiiri <murahoid@gmail.com>\n"
+"POT-Creation-Date: 2015-06-15 16:29+0000\n"
+"PO-Revision-Date: 2015-06-15 16:30+0000\n"
+"Last-Translator: Gareth Rees <gareth@mysociety.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/alaveteli/language/uk/)\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid ""
-"  This will appear on your {{site_name}} profile, to make it\\n            "
-"easier for others to get involved with what you're doing."
+msgid "  This will appear on your {{site_name}} profile, to make it\\n            easier for others to get involved with what you're doing."
 msgstr "Це з’явиться у вашому профілі для ознайомлення інших людей."
 
-msgid ""
-" (<strong>no ranty</strong> politics, read our <a "
-"href=\"{{url}}\">moderation policy</a>)"
-msgstr " "
+msgid " (<strong>no ranty</strong> politics, read our <a href=\"{{url}}\">moderation policy</a>)"
+msgstr "(звертаємо вашу увагу на те, що Тут не місце для політичних сварок)"
 
-msgid ""
-" (<strong>patience</strong>, especially for large files, it may take a "
-"while!)"
+msgid " (<strong>patience</strong>, especially for large files, it may take a while!)"
 msgstr "(<strong>Наберіться терпіння</strong>, це може тривати досить довго, особливо якщо файл великий!)"
 
 msgid " (you)"
@@ -55,9 +49,7 @@ msgstr ""
 msgid " << "
 msgstr ""
 
-msgid ""
-" <strong>Note:</strong>\\n    We will send you an email. Follow the "
-"instructions in it to change\\n    your password."
+msgid " <strong>Note:</strong>\\n    We will send you an email. Follow the instructions in it to change\\n    your password."
 msgstr "Ми надішлемо вам листа з інструкціями щодо зміни паролю."
 
 msgid " <strong>Privacy note:</strong> Your email address will be given to"
@@ -75,41 +67,27 @@ msgstr ""
 msgid " Advise on how to <strong>best clarify</strong> the request."
 msgstr " Порадьте, як зробити запит <strong>більш зрозумілим</strong>."
 
-msgid ""
-" Ideas on what <strong>other documents to request</strong> which the "
-"authority may hold. "
+msgid " Ideas on what <strong>other documents to request</strong> which the authority may hold. "
 msgstr "Ідеї щодо того, які ще документи можна вимагати у розпорядника інформації."
 
-msgid ""
-" If you know the address to use, then please <a href=\"{{url}}\">send it to "
-"us</a>.\\n        You may be able to find the address on their website, or "
-"by phoning them up and asking."
-msgstr "Якщо вам відома адреса, яку можна використати, <a href=\"{{url}}\">надішліть її нам</a>.\n Ви можете знайти адресу на їхньому вебсайті або ж подзвонити і запитати."
+msgid " If you know the address to use, then please <a href=\"{{url}}\">send it to us</a>.\\n        You may be able to find the address on their website, or by phoning them up and asking."
+msgstr ""
+"Якщо вам відома адреса, яку можна використати, <a href=\"{{url}}\">надішліть її нам</a>.\n"
+" Ви можете знайти адресу на їхньому вебсайті або ж подзвонити і запитати."
 
-msgid ""
-" Include relevant links, such as to a campaign page, your blog or a\\n"
-"            twitter account. They will be made clickable. \\n            "
-"e.g."
+msgid " Include relevant links, such as to a campaign page, your blog or a\\n            twitter account. They will be made clickable. \\n            e.g."
 msgstr "Включіть доречні посилання (наприклад, на сторінку кампанії, ваш блог чи твіттер-акаунт). Вони будуть активними."
 
-msgid ""
-" Link to the information requested, if it is <strong>already "
-"available</strong> on the Internet. "
+msgid " Link to the information requested, if it is <strong>already available</strong> on the Internet. "
 msgstr "Посилання на запитану інформацію, якщо вона <strong>вже доступна</strong> в інтернеті."
 
-msgid ""
-" Offer better ways of <strong>wording the request</strong> to get the "
-"information. "
+msgid " Offer better ways of <strong>wording the request</strong> to get the information. "
 msgstr "Запропонуйте, як краще <strong>сформулювати запит</strong>, щоб отримати інформацію."
 
-msgid ""
-" Say how you've <strong>used the information</strong>, with links if "
-"possible."
+msgid " Say how you've <strong>used the information</strong>, with links if possible."
 msgstr "Розкажіть, як ви <strong>використали отриману інформацію</strong>, якщо можна, з посиланнями."
 
-msgid ""
-" Suggest <strong>where else</strong> the requester might find the "
-"information. "
+msgid " Suggest <strong>where else</strong> the requester might find the information. "
 msgstr "Підкажіть, <strong>де ще</strong> автор запиту може знайти інформацію."
 
 msgid " What are you investigating using Freedom of Information? "
@@ -164,7 +142,14 @@ msgid "*unknown*"
 msgstr ""
 
 msgid ",\\n\\n\\n\\nYours,\\n\\n{{user_name}}"
-msgstr ",\n\n\n\nЗ повагою,\n\n{{user_name}}"
+msgstr ""
+",\n"
+"\n"
+"\n"
+"\n"
+"З повагою,\n"
+"\n"
+"{{user_name}}"
 
 msgid "- or -"
 msgstr "- або -"
@@ -1630,10 +1615,10 @@ msgstr "Останній переглянутий розпорядник інф�
 msgid "Last request viewed: "
 msgstr "Останній переглянутий запит: "
 
-msgid ""
-"Let us know what you were doing when this message\\nappeared and your "
-"browser and operating system type and version."
-msgstr "Дайте нам знати, що ви робили коли отримали це повідомлення,\nа також якими браузером та операційною системою ви користуєтесь."
+msgid "Let us know what you were doing when this message\\nappeared and your browser and operating system type and version."
+msgstr ""
+"Дайте нам знати, що ви робили коли отримали це повідомлення,\n"
+"а також якими браузером та операційною системою ви користуєтесь."
 
 msgid "Link to this"
 msgstr "Посилання"

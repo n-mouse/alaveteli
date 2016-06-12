@@ -60,7 +60,7 @@
 ALAVETELI_FQDN = ENV['ALAVETELI_VAGRANT_FQDN'] || "alaveteli.10.10.10.30.xip.io"
 ALAVETELI_MEMORY = ENV['ALAVETELI_VAGRANT_MEMORY'] || 1536
 ALAVETELI_THEMES_DIR = ENV['ALAVETELI_THEMES_DIR'] || '../alaveteli-themes'
-ALAVETELI_OS = ENV['ALAVETELI_VAGRANT_OS'] || 'precise64'
+ALAVETELI_OS = ENV['ALAVETELI_VAGRANT_OS'] || 'wheezy64'
 
 SUPPORTED_OPERATING_SYSTEMS = {
   'precise64' => 'https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box',
@@ -113,9 +113,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Fetch and run the install script:
   config.vm.provision :shell, :inline => "apt-get -y install curl"
-  config.vm.provision :shell, :inline => "curl -O https://raw.githubusercontent.com/mysociety/commonlib/master/bin/install-site.sh"
+  #config.vm.provision :shell, :inline => "curl -O https://raw.githubusercontent.com/mysociety/commonlib/master/bin/install-site.sh"
   config.vm.provision :shell, :inline => "chmod a+rx install-site.sh"
-  config.vm.provision :shell, :inline => "./install-site.sh " \
+  config.vm.provision :shell, :inline => "sh /home/vagrant/alaveteli/install-site.sh " \
                                              "--dev " \
                                              "alaveteli " \
                                              "vagrant " \
