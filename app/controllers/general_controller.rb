@@ -26,7 +26,7 @@ class GeneralController < ApplicationController
     @feed_autodetect = [ { :url => do_track_url(@track_thing, 'feed'),
                            :title => _('Successful requests'),
                            :has_json => true } ]
-
+    @publications = Publication.published.where("created_at < ?", Time.now).order('created_at DESC').limit(10)
     respond_to :html
   end
 
@@ -78,7 +78,7 @@ class GeneralController < ApplicationController
       render :action => "search"
     else
       query_parts = @query.split("/")
-      if !['bodies', 'requests', 'users', 'all'].include?(query_parts[-1])
+      if !['bodies', 'requests', 'users', 'publications', 'all'].include?(query_parts[-1])
         redirect_to search_url([@query, "all"], params)
       else
         redirect_to search_url(@query, params)
@@ -102,7 +102,7 @@ class GeneralController < ApplicationController
 
     combined = params[:combined].split("/")
     @sortby = nil
-    @bodies = @requests = @users = true
+    @bodies = @requests = @users = @publications = true
     if combined.size > 0 && (['advanced'].include?(combined[-1]))
       combined.pop
       @advanced = true
@@ -118,21 +118,29 @@ class GeneralController < ApplicationController
     if !params[:view].nil?
       combined += [params[:view]]
     end
-    if combined.size > 0 && (['bodies', 'requests', 'users', 'all'].include?(combined[-1]))
+    if combined.size > 0 && (['bodies', 'requests', 'users', 'publications', 'all'].include?(combined[-1]))
       @variety_postfix = combined.pop
       case @variety_postfix
+      when 'publications'
+        @bodies = false
+        @requests = false
+        @users = false   
+        @publications = true  
       when 'bodies'
         @bodies = true
         @requests = false
         @users = false
+        @publications = false
       when 'requests'
         @bodies = false
         @requests = true
         @users = false
+        @publications = false
       when 'users'
         @bodies = false
         @requests = false
         @users = true
+        @publications = false
       else
         @variety_postfix = "all"
       end
@@ -176,6 +184,15 @@ class GeneralController < ApplicationController
     end
 
     @total_hits = @xapian_requests_hits = @xapian_bodies_hits = @xapian_users_hits = 0
+    if @publications
+      @xapian_publications = perform_search([Publication], @query, @sortby, nil, 5)
+      @publications_per_page = @per_page
+      @xapian_publications_hits = @xapian_publications.results.size
+      @xapian_publications_total_hits = @xapian_publications.matches_estimated
+      @total_hits += @xapian_publications.matches_estimated
+      @request_for_spelling = @xapian_publications
+      @max_publications = (@xapian_publications.matches_estimated > MAX_RESULTS) ? MAX_RESULTS : @xapian_publications.matches_estimated
+    end  
     if @requests
       @xapian_requests = perform_search([InfoRequestEvent], @query, @sortby, 'request_collapse', requests_per_page)
       @requests_per_page = @per_page

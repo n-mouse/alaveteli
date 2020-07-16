@@ -131,6 +131,12 @@ gem 'will_paginate', '~> 3.1.8'
 gem 'xapian-full-alaveteli', '~> 1.2.21.1'
 gem 'xml-simple', '~> 1.1.0', :require => 'xmlsimple'
 
+# Additional gems
+gem 'impressionist', '~>1.6.1'
+gem 'friendly_id'
+gem 'babosa'
+gem 'paperclip'
+
 # Gems only used by the research export task
 gem 'gender_detector', '~> 1.0.0'
 
