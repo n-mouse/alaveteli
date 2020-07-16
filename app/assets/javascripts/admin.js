@@ -11,3 +11,6 @@
 //= require admin/category-order
 //= require admin/holidays
 //= require jquery_ujs
+//= require tinymce-jquery
+//= require jquery-ui/widgets/datepicker
+//= require publications
