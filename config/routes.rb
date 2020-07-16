@@ -752,4 +752,8 @@ Rails.application.routes.draw do
   ####
 
   filter :conditionallyprependlocale
+  
+  resources :categories, :path => "/", only: [:show] do
+    resources :publications, :only => [:index, :show]
+  end
 end

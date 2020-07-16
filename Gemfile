@@ -138,6 +138,7 @@ gem 'babosa'
 gem 'paperclip'
 gem 'tinymce-rails', '~> 4.1.10'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+gem "rails_autolink"
 
 # Gems only used by the research export task
 gem 'gender_detector', '~> 1.0.0'

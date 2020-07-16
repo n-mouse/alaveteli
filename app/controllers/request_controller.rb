@@ -903,7 +903,8 @@ class RequestController < ApplicationController
 
   def assign_variables_for_show_template(info_request)
     @info_request = info_request
-    @info_request_events = info_request.info_request_events
+    info_request_events = info_request.info_request_events 
+    @info_request_events = info_request_events.paginate(:page => params[:page], :per_page => 30).order('created_at') #MODIFIED
     @status = info_request.calculate_status
     @old_unclassified =
       info_request.is_old_unclassified? && !authenticated_user.nil?

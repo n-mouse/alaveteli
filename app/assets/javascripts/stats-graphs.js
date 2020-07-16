@@ -1,135 +1,71 @@
-/* From http://stackoverflow.com/a/10284006/223092 */
-function zip(arrays) {
-  return arrays[0].map(function(_,i){
-    return arrays.map(function(array){return array[i]})
+$.each(graphs_data, function(i, graph){
+  	var seriesValues = graph["y_values"].reverse();
+  	if (i===0){
+  		var marker="";
+  		var seriesName="запитів: ";
+  		var y_text="Кількість запитів";
+  	} else {
+  		var marker="%";
+  		var seriesName="частка: ";		
+  		var seriesValues = $.map(seriesValues, function( a ) {
+          return Math.round(a * 100) / 100;
+        });
+        var y_text="Частка запитів";
+  	}
+  
+  $(".charts").append("<div class='single-chart' id='chart"+i+"'></div>");
+  	
+  var body_names = [];
+  var bodies = graph["public_bodies"];
+  $.each(bodies, function(i,pb){
+  	body_names.push(pb["name"]);
   });
-}
-
-$(document).ready(function() {
-  $.each(graphs_data, function(index, graph_data) {
-    var graph_id = graph_data.id,
-    dataset,
-    plot,
-    graph_data,
-    graph_div = $('#' + graph_id),
-    previousPoint = null;
-
-    if (!graph_data.x_values) {
-      /* Then there's no data for this graph */
-      return true;
-    }
-
-    graph_div.css('width', '700px');
-    graph_div.css('height', '600px');
-
-    dataset = [
-      {'color': 'orange',
-      'bars': {
-        'show': true,
-        'barWidth': 0.5,
-        'align': 'center'
-      },
-      'data': zip([graph_data.x_values,
-        graph_data.y_values])
-      }
-    ]
-
-    if (graph_data.errorbars) {
-      dataset.push({
-        'color': 'orange',
-        'points': {
-          // Don't show these, just draw error bars:
-          'radius': 0,
-          'errorbars': 'y',
-          'yerr': {
-            'asymmetric': true,
-            'show': true,
-            'upperCap': "-",
-            'lowerCap': "-",
-            'radius': 5
-          }
+  $('#chart'+i).highcharts({
+        chart: {
+            type: 'bar'
         },
-        'data': zip([graph_data.x_values,
-          graph_data.y_values,
-          graph_data.cis_below,
-          graph_data.cis_above])
-        });
-      }
-
-      options = {
-        'grid': { 'hoverable': true, 'clickable': true },
-        'xaxis': {
-          'ticks': graph_data.x_ticks,
-          'rotateTicks': 90
+        title: {
+            text: graph["title"]
         },
-        'yaxis': {
-          'min': 0,
-          'max': graph_data.y_max
+        xAxis: {
+        	title: {text: "hello"},
+            categories: body_names.reverse(),
+			lineWidth: 0,
+		minorGridLineWidth: 0,
+		minorTickLength: 0,
+		tickLength: 0,
+            title: {
+                text: null
+            },
+            labels: {style: {fontSize: "13px", fontWeight: "400"}}
         },
-        'xaxes': [{
-          'axisLabel': graph_data.x_axis,
-          'axisLabelPadding': 20,
-          'axisLabelColour': 'black'
-        }],
-        'yaxes': [{
-          'axisLabel': graph_data.y_axis,
-          'axisLabelPadding': 20,
-          'axisLabelColour': 'black'
-        }],
-        'series': {
-          'lines': {
-            'show': false
-          }
+        yAxis: {
+        				lineWidth: 0,
+		minorGridLineWidth: 0,
+		minorTickLength: 0,
+		tickLength: 0,
+		gridLineColor :'transparent',
+            min: 0,
+            title: {
+                text: y_text,
+            }
         },
-      }
-
-      plot = $.plot(graph_div,
-        dataset,
-        options);
-
-        graph_div.bind("plotclick", function(event, pos, item) {
-          var i, pb, url, name;
-          if (item) {
-            i = item.dataIndex;
-            pb = graph_data.public_bodies[i];
-            url = pb.url;
-            name = pb.name;
-            window.location.href = url;
-          }
-        });
-
-        /* This code is adapted from:
-        http://www.flotcharts.org/flot/examples/interacting/ */
-
-        function showTooltip(x, y, contents) {
-          $('<div id="flot-tooltip">' + contents + '</div>').css({
-            'position': 'absolute',
-            'display': 'none',
-            'top': y + 10,
-            'left': x + 10,
-            'border': '1px solid #fdd',
-            'padding': '2px',
-            'background-color': '#fee',
-            'opacity': 0.80
-          }).appendTo("body").fadeIn(200);
-        }
-
-        graph_div.bind("plothover", function (event, pos, item) {
-          var escapedName, x, y;
-          if (item) {
-            if (previousPoint != item.dataIndex) {
-              previousPoint = item.dataIndex;
-              $("#flot-tooltip").remove();
-              escapedName = $('<div />').text(
-                graph_data.tooltips[item.dataIndex]).html();
-                showTooltip(item.pageX,
-                  item.pageY,
-                  escapedName);
-                }
-              } else {
-                $("#flot-tooltip").remove();
-                previousPoint = null;
-              }
-            });
-          });
-        });
+        legend: {
+          enabled: false
+        },
+        tooltip: {
+        	borderColor: "#2C96B8"
+        },
+        plotOptions: {
+        	bar: {
+        		tooltip: {headerFormat: '{point.x}<br><b>{point.series.name}</b><br>', pointFormat:'<b>{point.y}'+marker},
+        		states: {hover: {color: "#2C96B8"}}
+        	},
+        	series: {groupPadding: 0}
+        },
+        series: [{
+            name: seriesName,color: '#E15F42',
+            data: seriesValues
+        }]
+    });
+  });

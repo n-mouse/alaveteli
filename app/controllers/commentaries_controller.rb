@@ -1,6 +1,6 @@
 class CommentariesController < ApplicationController
 
-  before_filter :legal_user, :except => [:index]
+  before_action :legal_user, :except => [:index]
   
   def index
     @commentaries = Commentary.order('created_at DESC')

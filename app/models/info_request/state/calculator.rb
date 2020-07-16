@@ -136,7 +136,7 @@ class InfoRequest
           states = [
             'waiting_response',
             'waiting_clarification',
-            'gone_postal'
+            #'gone_postal'
           ]
           if opts.fetch(:user_asked_to_update_status, false)
             states += ['internal_review']
