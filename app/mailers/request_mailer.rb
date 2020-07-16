@@ -12,7 +12,7 @@ class RequestMailer < ApplicationMailer
                 :only => [
                   :new_response, :overdue_alert, :very_overdue_alert,
                   :new_response_reminder_alert, :old_unclassified_updated,
-                  :not_clarified_alert, :comment_on_alert,
+                  :not_clarified_alert, :comment_on_alert, :commentary_on_alert, :commentary_on_alert_plural,
                   :comment_on_alert_plural
                 ]
 
@@ -188,6 +188,17 @@ class RequestMailer < ApplicationMailer
         :request_title => info_request.title.html_safe)
     )
   end
+  
+  def commentary_on_alert(info_request, commentary) #MODIFIED
+    @commentary, @info_request = commentary, info_request
+    @url = request_url(info_request, anchor: "commentary-"+commentary.id.to_s )
+
+    set_auto_generated_headers
+    mail_user(
+      info_request.user,
+      "Юрист залишив коментар до вашого запиту - "+info_request.title.html_safe
+    )
+  end
 
   # Tell requester that somebody added annotations to more than one of
   # their requests
@@ -201,6 +212,18 @@ class RequestMailer < ApplicationMailer
       info_request.user,
       _("Some notes have been added to your FOI request - {{request_title}}",
         :request_title => info_request.title.html_safe)
+    )
+  end
+  
+  def commentary_on_alert_plural(info_request, count, earliest_unalerted_commentary) #MODIFIED
+    @count, @info_request = count, info_request
+    @url = request_url(info_request, anchor: "commentary-"+earliest_unalerted_commentary.id.to_s )
+
+    set_reply_to_headers(info_request.user)
+    set_auto_generated_headers
+    mail_user(
+      info_request.user,
+      "До вашого запиту є кілька юридичних коментарів - "+info_request.title.html_safe
     )
   end
 
@@ -513,6 +536,72 @@ class RequestMailer < ApplicationMailer
             info_request,
             last_comment_event.comment
           ).deliver_now
+        else
+          raise "internal error"
+        end
+        store_sent.save!
+      end
+    end
+  end
+  
+  def self.alert_commentary_on_request #MODIFIED
+                      
+    conditions = <<-EOF.strip_heredoc
+    info_requests.id in (
+      SELECT info_request_id
+      FROM info_request_events
+      WHERE event_type = 'commentary'
+      AND created_at > (now() - '1 month'::interval)
+    )
+    EOF
+
+    info_requests =
+      InfoRequest.
+        includes(:info_request_events => :user_info_request_sent_alerts).
+          where(conditions).
+            order('info_requests.id, info_request_events.created_at').
+              references(:info_request_events)                     
+
+    for info_request in info_requests
+      next if info_request.is_external?
+
+      earliest_unalerted_commentary_event = nil
+      last_commentary_event = nil
+      count = 0
+      for e in info_request.info_request_events.reverse
+        if e.event_type == 'commentary'
+          last_commentary_event = e if last_commentary_event.nil?
+
+          alerted_for = e.user_info_request_sent_alerts.
+            where("alert_type = 'commentary_1'
+                    AND user_id = ?",
+                    info_request.user_id).
+              first
+          if alerted_for.nil?
+            count = count + 1
+            earliest_unalerted_commentary_event = e
+          else
+            break
+          end
+        end
+      end
+      if count > 0
+        store_sent = UserInfoRequestSentAlert.new
+        store_sent.info_request = info_request
+        store_sent.user = info_request.user
+        store_sent.alert_type = 'commentary_1'
+        store_sent.info_request_event_id = last_commentary_event.id
+        if count > 1
+          RequestMailer.commentary_on_alert_plural(
+            info_request,
+            count,
+            earliest_unalerted_commentary_event.commentary
+          ).deliver
+        elsif count == 1
+          RequestMailer.commentary_on_alert(
+            info_request,
+            last_commentary_event.commentary
+          ).deliver
         else
           raise "internal error"
         end

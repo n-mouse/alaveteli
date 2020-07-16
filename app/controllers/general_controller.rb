@@ -27,6 +27,7 @@ class GeneralController < ApplicationController
                            :title => _('Successful requests'),
                            :has_json => true } ]
     @publications = Publication.published.where("created_at < ?", Time.now).order('created_at DESC').limit(10)
+    @commentaries = Commentary.order('created_at DESC').limit(3)
     respond_to :html
   end
 

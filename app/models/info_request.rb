@@ -120,6 +120,10 @@ class InfoRequest < ApplicationRecord
            -> { order('created_at') },
            :inverse_of => :info_request,
            :dependent => :destroy
+  has_many :commentaries,
+           -> { order('created_at desc') },
+           :inverse_of => :info_request,
+           :dependent => :destroy
   has_many :censor_rules,
            -> { order('created_at desc') },
            :inverse_of => :info_request,

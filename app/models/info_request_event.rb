@@ -54,7 +54,9 @@ class InfoRequestEvent < ApplicationRecord
     'embargo_expiring', # an embargo is about to expire
     'expire_embargo', # an embargo on the request expires
     'set_embargo', # an embargo is added or extended
-    'send_error' # an error during sending
+    'send_error', # an error during sending
+    'commentary', # a commentary is added
+    'edit_commentary', #commentary edited
   ].freeze
 
   belongs_to :info_request,
@@ -67,6 +69,8 @@ class InfoRequestEvent < ApplicationRecord
   belongs_to :incoming_message,
              :inverse_of => :info_request_events
   belongs_to :comment,
+             :inverse_of => :info_request_events
+  belongs_to :commentary,
              :inverse_of => :info_request_events
 
   has_one :request_classification,
@@ -324,6 +328,9 @@ class InfoRequestEvent < ApplicationRecord
     end
     if params[:comment_id]
       self.comment_id = params[:comment_id]
+    end
+    if params[:commentary_id]
+      self.commentary_id = params[:commentary_id]
     end
     self.params_yaml = params.to_yaml
   end
