@@ -165,6 +165,7 @@ class PublicBodyController < ApplicationController
 
       respond_to do |format|
         format.html { render :template => 'public_body/list' }
+        format.json { render :json => PublicBody.find_by_tags(params[:obl],params[:tag]).to_json( :only => [:name,:url_name] ) } #MODIFIED
       end
     end
   end

@@ -910,6 +910,12 @@ class PublicBody < ApplicationRecord
   def questions
     PublicBodyQuestion.fetch(self)
   end
+  
+  def self.find_by_tags(tag1, tag2) #CUSTOM
+    pp1 = PublicBody.find_by_tag(tag1.gsub(/'/,""))
+    pp2 = PublicBody.find_by_tag(tag2.gsub(/'/,""))
+    pp1 & pp2
+  end
 
   private
 
