@@ -345,7 +345,7 @@ module MailHandler
           end
           # TODO: call _convert_part_body_to_text here, but need to get charset somehow
           # e.g. http://www.whatdotheyknow.com/request/1593/response/3088/attach/4/Freedom%20of%20Information%20request%20-%20car%20oval%20sticker:%20Article%2020,%20Convention%20on%20Road%20Traffic%201949.txt
-          body = headers + "\n" + body
+	  body = headers.to_s.force_encoding("UTF-8") + "\n" + body.to_s.force_encoding("UTF-8")
         end
         body
       end

@@ -35,7 +35,7 @@ def normalize_string_to_utf8(s, suggested_character_encoding=nil)
         return Net::IMAP.decode_utf7(s)
       else
         begin
-          s.force_encoding from_encoding
+	  s.dup.force_encoding from_encoding
           return s.encode('UTF-8') if s.valid_encoding?
         rescue ArgumentError, Encoding::UndefinedConversionError
           # We get this is there are invalid bytes when
