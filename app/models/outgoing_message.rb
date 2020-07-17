@@ -142,7 +142,7 @@ class OutgoingMessage < ApplicationRecord
   #
   # Returns a String
   def to
-    if replying_to_incoming_message?
+    if replying_to_incoming_message? && (incoming_message_followup.from_email != 'nabu.vidpovid@nabu.gov.ua')
       # calling safe_mail_from from so censor rules are run
       MailHandler.address_from_name_and_email(incoming_message_followup.safe_mail_from,
                                               incoming_message_followup.from_email)
