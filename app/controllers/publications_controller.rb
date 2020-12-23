@@ -3,6 +3,7 @@ class PublicationsController < ApplicationController
   def show
     @publication = Publication.friendly.published.find(params[:id])
     impressionist(@publication, "message", :unique => [:session_hash])
+    @categories = Category.all
   end
   
   def feed
@@ -13,6 +14,7 @@ class PublicationsController < ApplicationController
   end 
   
   def index
+    @categories = Category.all
     if params[:tag] == 'covid'
        @publications = Publication.published.where(project: "COVID19").where("created_at < ?", Time.now).order('created_at DESC').paginate(:page => params[:page], :per_page => 14)
        @intro = "Публікації на тему COVID19"
