@@ -1,0 +1,5 @@
+uk:
+  will_paginate:
+    previous_label: "<<"
+    page_gap: "..."
+    next_label: ">>"
