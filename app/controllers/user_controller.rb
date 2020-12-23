@@ -407,7 +407,7 @@ class UserController < ApplicationController
   end
 
   def user_params(key = :user)
-    params.require(key).permit(:name, :email, :password, :password_confirmation)
+    params.require(key).permit(:name, :email, :password, :password_confirmation, :gender)
   end
 
   def is_modal_dialog

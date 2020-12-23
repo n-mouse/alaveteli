@@ -15,6 +15,7 @@ class UserProfile::AboutMeController < ApplicationController
     # TODO: Use strong params to require :user key
     return redirect_to user_url(@user) unless params[:user]
     @user.about_me = params[:user][:about_me]
+    @user.gender = params[:user][:gender]
 
     unless @user.confirmed_not_spam?
       if UserSpamScorer.new.spam?(@user)

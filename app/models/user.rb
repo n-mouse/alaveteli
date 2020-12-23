@@ -40,7 +40,7 @@ class User < ApplicationRecord
   include AlaveteliFeatures::Helpers
   include AlaveteliPro::PhaseCounts
   include User::Authentication
-
+  
   rolify before_add: :setup_pro_account
   strip_attributes :allow_empty => true
 
@@ -133,7 +133,7 @@ class User < ApplicationRecord
 
   validates_presence_of :email, :message => _("Please enter your email address")
   validates_presence_of :name, :message => _("Please enter your name")
-
+  
   validates_length_of :about_me,
     :maximum => 500,
     :message => _("Please keep it shorter than 500 characters")
