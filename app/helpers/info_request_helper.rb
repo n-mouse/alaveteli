@@ -97,16 +97,6 @@ module InfoRequestHelper
     str += details_help_link(info_request.public_body)
     str += ")."
 
-    unless info_request.is_external?
-      str += ' '
-      str += _('You can <strong>complain</strong> by')
-      str += ' '
-      str += link_to _("requesting an internal review"),
-                    new_request_followup_path(:request_id => info_request.id) +
-                    "?internal_review=1#followup"
-      str += '.'
-    end
-
     str
   end
 
@@ -274,9 +264,7 @@ module InfoRequestHelper
   end
 
   def details_help_link(public_body)
-    anchor =
-      public_body.not_subject_to_law? ? 'authorities' : 'quickly_response'
-    link_to _('details'), help_requesting_path(:anchor => anchor)
+    link_to _('details'), help_about_path
   end
 
   private
