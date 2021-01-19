@@ -1048,7 +1048,7 @@ msgid "By law, they have to respond."
 msgstr "Відповідно за закону, вони мають відповісти"
 
 msgid "By law, under all circumstances, {{public_body_link}} should have responded by now"
-msgstr "Згідно з законодавством, за будь-яких умов {{public_body_link}} мав би вже відповісти"
+msgstr " "
 
 msgid "By law, you should get a response promptly, and normally before the end of <strong>{{date_response_required_by}}</strong>."
 msgstr ""
@@ -3426,7 +3426,7 @@ msgid "They are going to reply <strong>by postal mail</strong>"
 msgstr ""
 
 msgid "They do <strong>not have</strong> the information <small>(maybe they say who does)</small>"
-msgstr "У них немає інформації <small>(але, можливо, підказують, в кого її можна отримати)</small>"
+msgstr "У них немає інформації"
 
 msgid "They have been given the following explanation:"
 msgstr "Вони надали таке пояснення:"
