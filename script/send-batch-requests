@@ -1,4 +1,4 @@
 #!/bin/bash
 TOP_DIR="$(dirname "$BASH_SOURCE")/.."
 cd "$TOP_DIR"
-bundle exec rails runner 'InfoRequestBatch.send_batches'
+${RUBY_WRAPPER}bundle exec rails runner 'InfoRequestBatch.send_batches'

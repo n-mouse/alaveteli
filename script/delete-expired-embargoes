@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd `dirname $0`
-bundle exec rake --silent embargoes:expire_publishable
+${RUBY_WRAPPER}bundle exec rake --silent embargoes:expire_publishable
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd `dirname $0`
-bundle exec rake --silent xapian:update_index "$@"
+${RUBY_WRAPPER}bundle exec rake --silent xapian:update_index "$@"
