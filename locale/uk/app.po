@@ -3058,7 +3058,7 @@ msgid "Submit status"
 msgstr "Оновити статус"
 
 msgid "Submit status and send message"
-msgstr ""
+msgstr "Відправити"
 
 msgid "Subscribe to blog"
 msgstr ""
@@ -3402,7 +3402,7 @@ msgid "There is nothing to display yet."
 msgstr ""
 
 msgid "There was a <strong>delivery error</strong> or similar, which needs fixing by the {{site_name}} team."
-msgstr "Зафіксовано <strong>помилку доставки</strong> або щось подібне. Команда сайту має виправити її."
+msgstr "Зафіксовано <strong>помилку доставки</strong> або щось подібне."
 
 msgid "There was an error with the reCAPTCHA. Please try again."
 msgstr ""
