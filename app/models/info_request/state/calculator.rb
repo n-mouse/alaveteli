@@ -28,7 +28,7 @@ class InfoRequest
             when 'waiting_response_very_overdue'
               :very_overdue
             when 'gone_postal',
-                 'internal_review',
+                 #'internal_review',
                  'error_message',
                  'requires_admin',
                  'attention_requested',
@@ -94,7 +94,7 @@ class InfoRequest
             other: {}
           }
         end
-        opts.merge!(in_internal_review: state == 'internal_review')
+        #opts.merge!(in_internal_review: state == 'internal_review')
         build_transitions_hash(opts)
       end
 
@@ -130,18 +130,18 @@ class InfoRequest
 
       def pending_states(opts)
         # Which pending states can we transition into
-        if opts.fetch(:in_internal_review, false)
-          states = ['internal_review', 'gone_postal']
-        else
+        #if opts.fetch(:in_internal_review, false)
+          #states = ['internal_review', 'gone_postal']
+        #else
           states = [
             'waiting_response',
             'waiting_clarification',
             #'gone_postal'
           ]
-          if opts.fetch(:user_asked_to_update_status, false)
-            states += ['internal_review']
-          end
-        end
+          #if opts.fetch(:user_asked_to_update_status, false)
+            #states += ['internal_review']
+          #end
+        #end
         states
       end
 
