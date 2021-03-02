@@ -3432,10 +3432,10 @@ msgid "They have been given the following explanation:"
 msgstr "Вони надали таке пояснення:"
 
 msgid "They have not replied to your {{law_used_short}} request {{title}} promptly, as normally required by law"
-msgstr "Вони не відповіли на ваш запит {{title}} швидко, як того вимагає законодавство"
+msgstr "Відповідь на ваш запит {{title}} не надійшла вчасно"
 
 msgid "They have not replied to your {{law_used_short}} request {{title}}, as normally required by law"
-msgstr ""
+msgstr "Відповідь на ваш запит {{title}} не надійшла вчасно"
 
 msgid "They have still not replied to your {{law_used_short}} request {{title}}, as normally required by law"
 msgstr ""
@@ -3692,7 +3692,7 @@ msgid "To report this request"
 msgstr ""
 
 msgid "To send a follow up message to {{authority_name}}"
-msgstr ""
+msgstr "Щоб відправити уточнюючого листа або відповідь розпоряднику {{authority_name}}"
 
 msgid "To send a message to {{user_name}}"
 msgstr "Щоб відправити повідомлення {{user_name}}"
@@ -4326,7 +4326,7 @@ msgid "You're in. <a href=\"#\" id=\"send-request\">Continue sending your reques
 msgstr ""
 
 msgid "You're long overdue a response to your FOI request - {{request_title}}"
-msgstr "Ви затримуєте відповідь на інформаційний запит - {{request_title}}"
+msgstr "Відповідь на ваш запит {{request_title}} затримується"
 
 msgid "You're not following anything."
 msgstr "Ви нічого не відслідковуєте"
@@ -4679,7 +4679,7 @@ msgid "response received"
 msgstr ""
 
 msgid "send a follow up message"
-msgstr ""
+msgstr "надішліть уточнюючого листа або лист-відповідь"
 
 msgid "sent"
 msgstr ""
