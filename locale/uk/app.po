@@ -4610,7 +4610,7 @@ msgid "failed"
 msgstr ""
 
 msgid "have delayed."
-msgstr ""
+msgstr "затримує відповідь на запит"
 
 msgid "hide quoted sections"
 msgstr ""
