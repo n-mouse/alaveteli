@@ -33,7 +33,7 @@ class PublicBodyController < ApplicationController
       raise ActiveRecord::RecordNotFound.new("None found") if @public_body.nil?
 
       if @public_body.url_name.nil?
-        redirect_to :back
+        redirect_back(fallback_location: root_path)
         return
       end
 
@@ -117,7 +117,9 @@ class PublicBodyController < ApplicationController
     long_cache
 
     @tag = params[:tag] || 'all'
-    @tag = Unicode.upcase(@tag) if @tag.scan(/./mu).size == 1
+    if @tag.scan(/./mu).size == 1
+      @tag = RUBY_VERSION < '2.4' ? Unicode.upcase(@tag) : @tag.upcase
+    end
 
     @country_code = AlaveteliConfiguration.iso_country_code
     @locale = AlaveteliLocalization.locale

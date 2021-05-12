@@ -6,6 +6,7 @@ require 'rails'
 require 'active_model/railtie'
 # require 'active_job/railtie'
 require 'active_record/railtie'
+# require 'active_storage/engine'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
@@ -26,8 +27,9 @@ end
 module Alaveteli
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -36,7 +38,7 @@ module Alaveteli
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    I18n.config.enforce_available_locales = true
+    config.i18n.enforce_available_locales = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -99,5 +101,11 @@ module Alaveteli
       config.action_mailer.default_url_options[:protocol] = "https"
     end
 
+    config.after_initialize do
+      AlaveteliLocalization.set_locales(
+        AlaveteliConfiguration.available_locales,
+        AlaveteliConfiguration.default_locale
+      )
+    end
   end
 end

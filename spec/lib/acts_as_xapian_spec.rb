@@ -175,14 +175,16 @@ describe ActsAsXapian::Search do
 
   describe "#words_to_highlight" do
 
-    before :all do
+    before do
       get_fixtures_xapian_index
-      # make sure an index exists
+    end
+
+    before do
       @alice = FactoryBot.create(:public_body, :name => 'alice')
       update_xapian_index
     end
 
-    after :all do
+    after do
       @alice.destroy
       update_xapian_index
     end
@@ -251,15 +253,18 @@ describe ActsAsXapian::Search do
 
   describe '#spelling_correction' do
 
-    before :all do
+    before do
       load_raw_emails_data
       get_fixtures_xapian_index
+    end
+
+    before do
       @alice = FactoryBot.create(:public_body, :name => 'alice')
       @bob = FactoryBot.create(:public_body, :name => 'bôbby')
       update_xapian_index
     end
 
-    after :all do
+    after do
       @alice.destroy
       @bob.destroy
       update_xapian_index

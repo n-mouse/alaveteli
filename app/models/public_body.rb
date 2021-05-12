@@ -235,6 +235,15 @@ class PublicBody < ApplicationRecord
       uniq
   end
 
+  def self.with_domain(domain)
+    return none unless domain
+
+    with_translations(AlaveteliLocalization.locale).
+      where("lower(public_body_translations.request_email) " \
+            "like lower('%'||?||'%')", domain).
+        order('public_body_translations.name')
+  end
+
   def set_api_key
     set_api_key! if api_key.nil?
   end
@@ -266,7 +275,8 @@ class PublicBody < ApplicationRecord
     # public bodies in it
     old = PublicBody::Version.
       where(:url_name => name).
-      pluck('DISTINCT public_body_id')
+      distinct.
+      pluck(:public_body_id)
 
     # Maybe return the first one, so we show something relevant,
     # rather than throwing an error?
@@ -384,7 +394,7 @@ class PublicBody < ApplicationRecord
   def self.internal_admin_body
     matching_pbs = AlaveteliLocalization.
       with_locale(AlaveteliLocalization.default_locale) do
-      PublicBody.where(url_name: 'internal_admin_authority')
+      default_scoped.where(url_name: 'internal_admin_authority')
     end
 
     if matching_pbs.empty?
@@ -402,7 +412,7 @@ class PublicBody < ApplicationRecord
       else
         AlaveteliLocalization.
           with_locale(AlaveteliLocalization.default_locale) do
-          PublicBody.
+          default_scoped.
             create!(:name => 'Internal admin authority',
                     :short_name => "",
                     :request_email => AlaveteliConfiguration.contact_email,
@@ -874,7 +884,7 @@ class PublicBody < ApplicationRecord
       if DatabaseCollation.supports?(underscore_locale)
         where(where_condition, where_parameters).
           joins(:translations).
-          order(%Q(public_body_translations.name COLLATE "#{underscore_locale}"))
+          order(Arel.sql(%Q(public_body_translations.name COLLATE "#{underscore_locale}")))
       else
         where(where_condition, where_parameters).
           joins(:translations).

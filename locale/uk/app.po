@@ -4550,7 +4550,7 @@ msgid "anything matching text '{{query}}'"
 msgstr ""
 
 msgid "are long overdue."
-msgstr "прострочені."
+msgstr "затримується з відповіддю"
 
 msgid "at"
 msgstr ""

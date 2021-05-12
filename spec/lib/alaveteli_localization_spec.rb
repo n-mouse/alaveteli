@@ -34,8 +34,11 @@ describe AlaveteliLocalization do
 
       context 'when enforce_available_locales is true' do
 
-        before do
+        around do |example|
+          enforce_available_locales = I18n.config.enforce_available_locales
           I18n.config.enforce_available_locales = true
+          example.run
+          I18n.config.enforce_available_locales = enforce_available_locales
         end
 
         it 'allows a new locale to be set as the default' do
@@ -46,15 +49,89 @@ describe AlaveteliLocalization do
       end
 
       it 'sets I18n.locale' do
-        expect(I18n.locale).to eq(:"en-GB")
+        expect(I18n.locale).to eq(:'en-GB')
       end
 
       it 'sets I18n.default_locale' do
-        expect(I18n.default_locale).to eq(:"en-GB")
+        expect(I18n.default_locale).to eq(:'en-GB')
       end
 
       it 'sets I18n.available_locales' do
-        expect(I18n.available_locales).to eq([:"en-GB", :es])
+        expect(I18n.available_locales).to eq(%i[en_GB en-GB en es])
+      end
+
+      it 'sets correct fallbacks when using an underscore default locale' do
+        AlaveteliLocalization.set_locales('en_RW rw', 'en_RW')
+        expect(I18n.fallbacks[:en_RW]).to eq(%i[en_RW en-RW en])
+        expect(I18n.fallbacks[:rw]).to eq(%i[rw en_RW en-RW en])
+      end
+    end
+
+    context 'when dealing with Globalize' do
+      it 'sets correct fallbacks when using an underscore default locale' do
+        AlaveteliLocalization.set_locales('en_RW rw', 'en_RW')
+        expect(Globalize.fallbacks(:en_RW)).to eq(%i[en_RW en-RW en])
+        expect(Globalize.fallbacks(:rw)).to eq(%i[rw en_RW en-RW en])
+      end
+    end
+
+    context 'Globalize model attributes fallbacks' do
+      before do
+        AlaveteliLocalization.set_locales('en_RW rw', 'en_RW')
+      end
+
+      let(:body_with_default_locale) do
+        AlaveteliLocalization.with_locale('en_RW') do
+          FactoryBot.create(:public_body, url_name: 'default')
+        end
+      end
+
+      let(:body_with_non_default_locale) do
+        AlaveteliLocalization.with_locale('rw') do
+          FactoryBot.create(:public_body, url_name: 'non_default')
+        end
+      end
+
+      context 'when using non-default locale' do
+        it 'falls back to the default locale attribute' do
+          AlaveteliLocalization.with_locale('rw') do
+            expect(body_with_default_locale.url_name).to eq 'default'
+          end
+        end
+
+        it 'returns the translated non-default locale attribute' do
+          AlaveteliLocalization.with_locale('rw') do
+            expect(body_with_non_default_locale.url_name).to eq 'non_default'
+          end
+        end
+
+      end
+    end
+
+    context 'when translating' do
+
+      it 'can correct translate 2 letter language locale' do
+        AlaveteliLocalization.set_locales('cy', 'cy')
+        expect(I18n.translate('date.abbr_month_names')).to include(
+          'Ion', 'Chw', 'Maw', 'Ebr', 'Mai', 'Meh', 'Gor', 'Awst', 'Med', 'Hyd',
+          'Tach', 'Rha'
+        )
+      end
+
+      it 'can correct translate underscore language locale' do
+        AlaveteliLocalization.set_locales('is_IS', 'is_IS')
+        expect(I18n.translate('date.abbr_month_names')).to include(
+          'jan', 'feb', 'mar', 'apr', 'maí', 'jún', 'júl', 'ágú', 'sep', 'okt',
+          'nóv', 'des'
+        )
+      end
+
+      it 'can correct translate hyphenated language locale' do
+        AlaveteliLocalization.set_locales('fr-BE', 'fr-BE')
+        expect(I18n.translate('date.abbr_month_names')).to include(
+          'jan.', 'fév.', 'mar.', 'avr.', 'mai', 'juin', 'juil.', 'août',
+          'sept.', 'oct.', 'nov.', 'déc.'
+        )
       end
 
     end

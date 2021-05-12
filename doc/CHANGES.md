@@ -1,3 +1,177 @@
+# 0.38.4.2
+
+## Highlighted Features
+
+* Upgrades to Rails 5.2.5 to resolve missing upstream dependency (Graeme
+  Porteous)
+
+# 0.38.4.1
+
+## Highlighted Features
+
+* Updated translations from Transifex (Graeme Porteous)
+
+# 0.38.4.0
+
+## Highlighted Features
+
+* Updated translations from Transifex (Gareth Rees)
+* Force mail data to have CRLF line endings to fix mail gem upgrade regression
+  (Graeme Porteous, Matthew Somerville, Gareth Rees)
+
+## Upgrade Notes
+
+* You can run `bundle exec rake temp:reparse_multipart_incoming_with_unicode` to
+  re-parse any incoming messages which may have been affected by
+  https://github.com/mysociety/alaveteli/issues/5905.
+
+# 0.38.3.0
+
+## Highlighted Features
+
+* Prevent overflowing of long censor rules in admin interface (Gareth Rees)
+* Truncate search queries that are too long (Gareth Rees)
+* Remove translation markup from admin interface (Gareth Rees)
+* Improve handling of pluralised translations for locales with multiple
+  pluralisation rules (Graeme Porteous)
+* Allow setting log level through the environment (Gareth Rees)
+* Fixes errors when attempting to parse some Outlook emails (Gareth Rees)
+* Remove unicode dependency when running later Ruby versions (Graeme Porteous)
+* Dependencies upgrades (Graeme Porteous)
+
+# 0.38.2.0
+
+## Highlighted Features
+
+* Fix locale fallback issue (Gareth Rees)
+* Fix issue where locale switcher wouldn't update (Graeme Porteous)
+* Updated translations from Transifex (Graeme Porteous)
+* Dependencies upgrades (Gareth Rees, Graeme Porteous)
+
+### Changed Templates
+
+The following templates have been changed. Please update overrides in your theme
+to match the new templates.
+
+    app/views/alaveteli_pro/account_request/_marketing_batch_features.html.erb
+    app/views/alaveteli_pro/pages/marketing_roles/campaigners/_marketing_testimonials.html.erb
+    app/views/alaveteli_pro/pages/marketing_roles/journalists/_marketing_testimonials.html.erb
+    app/views/alaveteli_pro/pages/marketing_roles/researchers/_marketing_testimonials.html.erb
+
+# 0.38.1.1
+
+## Highlighted Features
+
+* Updated translations from Transifex (Gareth Rees)
+
+# 0.38.1.0
+
+## Highlighted Features
+
+* Fixes i18n string loading for locales with country specific subtags (Graeme
+  Porteous)
+
+# 0.38.0.0
+
+## Highlighted Features
+
+* Upgrade to Rails 5.2 (Graeme Porteous)
+* Upgrade to Xapian to 1.4.11 (Sam Pearson, Graeme Porteous)
+* Dependencies upgrades (Gareth Rees, Graeme Porteous)
+* Don't show profile photos of banned users (Gareth Rees)
+* Link to change request form when asking users to contact us about request
+  email updates (Gareth Rees)
+* Configure Google Analytics to anonymise their IP address and disable storing
+  browser cookies. (Graeme Porteous)
+* Removed New Relic support (Graeme Porteous)
+* Fixes encoding issue when viewing attachment as HTML. See related upgrade note
+  regarding checking requests/censor rules below (Graeme Porteous, Gareth Rees)
+* Fixes and improvements to geoip database download rake task (Graeme Porteous)
+
+## Highlighted Pro Features
+
+* Foundational work on a new "Projects" feature allowing users to collaborate on
+  requests and batches together (Gareth Rees, Graeme Porteous)
+  See: https://www.mysociety.org/2020/07/24/whatdotheyknow-projects/
+
+## Upgrade Notes
+
+* **IMPORTANT! We now depend on Xapian 1.4**, which means you may need to
+  convert your flint database to a chert database prior to upgrading Alaveteli.
+  See: https://getting-started-with-xapian.readthedocs.io/en/latest/advanced/admin_notes.html#converting-a-flint-database-to-a-chert-database)
+* **IMPORTANT! We no longer support PostgreSQL 9.4**. Please upgrade to 9.6
+  before upgrading Alaveteli. See: https://www.postgresql.org/docs/9.6/release-9-6.html
+* **NOTE:** This release will be the last to support Ruby 2.3 and 2.4. Please
+  consider upgrading to either 2.6. See: https://www.ruby-lang.org/en/news/2020/03/31/ruby-2-6-6-released/
+* CoffeeScript support has been dropped. You may find issues when pre-compiling
+  assets. If so please delete `./tmp/cache/assets` and try again.
+* Run `bundle exec rake temp:identify_broken_binary_censor_rules` to generate
+  a list of requests which should be manually checked to ensure censor rules are
+  applied correctly.
+* The Google Analytics code has been extracted into
+  `views/application/_ga_code.html.erb`, and to avoid the GDPR requirement to
+  show cookie opt-in notices, now sets cookie-less tracking. Additionally, we
+  are instructing Google to anonymise visitors IP address using the
+  `anonymizeIp` option. This means that visitors are no longer individually
+  profiled. If you wish to continue individually targeting users, you'll need
+  to override `app/views/application/_ga_code.html.erb` in your theme and set
+  appropriate options.
+* There are some database structure updates so remember to run
+  `bundle exec rails db:migrate`
+
+### Changed Templates
+
+The following templates have been changed. Please update overrides in your theme
+to match the new templates.
+
+    app/views/admin_user/_form.html.erb
+    app/views/admin_user/index.html.erb
+    app/views/alaveteli_pro/comment/_suggestions.html.erb
+    app/views/alaveteli_pro/info_request_batches/_info_request_batch.html.erb
+    app/views/alaveteli_pro/info_requests/_after_actions.html.erb
+    app/views/alaveteli_pro/info_requests/_embargo_create_form.html.erb
+    app/views/alaveteli_pro/info_requests/_embargo_extension_form.html.erb
+    app/views/alaveteli_pro/info_requests/_embargo_form.html.erb
+    app/views/alaveteli_pro/info_requests/_select_authority_form.html.erb
+    app/views/alaveteli_pro/info_requests/_sidebar.html.erb
+    app/views/classifications/message.html.erb
+    app/views/comment/_single_comment.html.erb
+    app/views/comment/_suggestions.html.erb
+    app/views/followups/new.html.erb
+    app/views/info_request_batch/show.html.erb
+    app/views/layouts/default.html.erb
+    app/views/public_body/view_email.html.erb
+    app/views/request/_after_actions.html.erb
+    app/views/request/_bubble.html.erb
+    app/views/request/_citations.html.erb
+    app/views/request/_correspondence.html.erb
+    app/views/request/_describe_state.html.erb
+    app/views/request/_incoming_correspondence.html.erb
+    app/views/request/_outgoing_correspondence.html.erb
+    app/views/request/_request_subtitle.html.erb
+    app/views/request/_sidebar.html.erb
+    app/views/request/_view_html_prefix.html.erb
+    app/views/request/show.html.erb
+    app/views/request/show.text.erb
+    app/views/request_mailer/requires_admin.text.erb
+    app/views/statistics/_people_leaderboard.html.erb
+    app/views/track/_tracking_links_simple.html.erb
+    app/views/user/_user_listing_single.html.erb
+    app/views/user/show/_show_profile.html.erb
+    app/views/widgets/show.html.erb
+
+# 0.37.1.4
+
+## Highlighted Features
+
+* Fix missing translations in 0.37.1.3 (Graeme Porteous)
+
+# 0.37.1.3
+
+## Highlighted Features
+
+* Updated translations from Transifex (Graeme Porteous)
+
 # 0.37.1.2
 
 ## Highlighted Features
@@ -38,7 +212,7 @@ Pin-Priority: 50
 ## Highlighted Features
 
 * Automatically run `db:seed` on deployment (Gareth Rees)
-* Highlight the importance of remembering OTP (Gareth Ress)
+* Highlight the importance of remembering OTP (Gareth Rees)
 * Updated world sites index with new Alaveteli installs (Jen Bramley)
 * Fetch MaxMind database weekly (Sam Pearson)
 * Link requests to news articles through citations (Graeme Porteous)

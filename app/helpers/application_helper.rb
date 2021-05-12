@@ -113,7 +113,7 @@ module ApplicationHelper
         view_paths.paths.first.to_s.
           gsub("/app/views", "/app/assets/#{asset_path}")
       end
-    File.exists?(file_path)
+    File.exist?(file_path)
   end
 
   # Note that if the admin interface is proxied via another server, we can't
@@ -133,7 +133,7 @@ module ApplicationHelper
 
   def render_flash(flash)
     flash = { :plain => flash } if flash.is_a?(String)
-    render flash.with_indifferent_access
+    render flash.deep_symbolize_keys
   end
 
   # We only want to cache request lists that have a reasonable chance of not expiring
