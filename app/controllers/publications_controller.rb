@@ -2,7 +2,7 @@ class PublicationsController < ApplicationController
   
   def show
     @publication = Publication.friendly.published.find(params[:id])
-    impressionist(@publication, "message", :unique => [:session_hash])
+    impressionist(@publication, "message", :filter => [:session_hash])
     @categories = Category.all
   end
   
