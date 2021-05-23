@@ -215,7 +215,7 @@ GEM
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
-    mini_magick (4.10.1)
+    mini_magick (4.11.0)
     mini_mime (1.1.0)
     mini_portile2 (2.4.0)
     minitest (5.14.4)
@@ -474,7 +474,7 @@ DEPENDENCIES
   mail (~> 2.7.1)
   maxmind-db (~> 1.0.0)
   mime-types (< 3.0.0)
-  mini_magick (~> 4.10.0)
+  mini_magick (~> 4.11.0)
   money (~> 6.13.8)
   net-ssh (~> 6.1.0)
   net-ssh-gateway (>= 1.1.0, < 3.0.0)
