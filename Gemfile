@@ -137,7 +137,7 @@ gem 'impressionist', '~>1.6.1'
 gem 'friendly_id'
 gem 'babosa'
 gem 'paperclip'
-gem 'tinymce-rails', '~> 4.1.10'
+gem 'tinymce-rails', '~> 4.9.11'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem "rails_autolink"
 gem 'passenger'
