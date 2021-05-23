@@ -133,7 +133,7 @@ gem 'xml-simple', '~> 1.1.0', :require => 'xmlsimple'
 gem 'zip_tricks', '~> 5.3.1'
 
 # Additional gems
-gem 'impressionist', '~>1.6.1'
+gem 'impressionist', '~>2.0.0'
 gem 'friendly_id'
 gem 'babosa'
 gem 'paperclip'
