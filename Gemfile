@@ -130,7 +130,7 @@ gem 'vpim', '~> 13.11.11'
 gem 'will_paginate', '~> 3.3.0'
 gem 'xapian-full-alaveteli', '~> 1.4.11.1'
 gem 'xml-simple', '~> 1.1.0', :require => 'xmlsimple'
-gem 'zip_tricks', '~> 5.3.1'
+gem 'zip_tricks', '~> 5.5.0'
 
 # Additional gems
 gem 'impressionist', '~>1.6.1'
